@@ -1,12 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { PrtButton } from "./prt-ui/prt-button/prt-button.component";
+import { ThemeToggleBtnComponent } from "./prt-ui/theme-toggle-btn/theme-toggle-btn.component";
+import { DialogContainerComponent } from "./prt-ui/prt-dialog/dialog-container/dialog-container.component";
+import { DialogService } from './core/services/dialog.service';
+import { ToastListComponent } from "./prt-ui/prt-toast/toast-list/toast-list.component";
+import { ToastService } from './core/services/toast.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [PrtButton, ThemeToggleBtnComponent, DialogContainerComponent, PrtButton, ToastListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'prt-ui';
+  dialog = inject(DialogService)
+  toast = inject(ToastService)
+
+  openDialogTest() {
+    this.dialog.openDialog(PrtButton)
+  }
+
+  tryToast(variant: string) {
+    switch (variant) {
+      case 'default':
+        this.toast.createToast({
+          title: 'Toast title',
+          message: 'The toast message for futures generations',
+          icon: 'info'
+        })
+        break;
+      case 'succes':
+        this.toast.success('Succes doing something')
+        break
+      case 'error':
+        this.toast.error('Error doing something')
+        break
+      default:
+        break;
+    }
+  }
 }
