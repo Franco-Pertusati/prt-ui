@@ -6,10 +6,14 @@ import { DialogContainerComponent } from "./prt-ui/prt-dialog/dialog-container/d
 import { DialogService } from './core/services/dialog.service';
 import { ToastListComponent } from "./prt-ui/prt-toast/toast-list/toast-list.component";
 import { ToastService } from './core/services/toast.service';
+import { CardContainerComponent } from "./prt-ui/prt-card/card-container/card-container.component";
+import { CardHeaderComponent } from "./prt-ui/prt-card/card-header/card-header.component";
+import { CardBodyComponent } from "./prt-ui/prt-card/card-body/card-body.component";
+import { CardFooterComponent } from "./prt-ui/prt-card/card-footer/card-footer.component";
 
 @Component({
   selector: 'app-root',
-  imports: [PrtButton, ThemeToggleBtnComponent, DialogContainerComponent, PrtButton, ToastListComponent],
+  imports: [PrtButton, ThemeToggleBtnComponent, DialogContainerComponent, PrtButton, ToastListComponent, CardContainerComponent, CardHeaderComponent, CardBodyComponent, CardFooterComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
