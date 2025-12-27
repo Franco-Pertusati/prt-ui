@@ -10,15 +10,27 @@ import { CardContainerComponent } from "./prt-ui/prt-card/card-container/card-co
 import { CardHeaderComponent } from "./prt-ui/prt-card/card-header/card-header.component";
 import { CardBodyComponent } from "./prt-ui/prt-card/card-body/card-body.component";
 import { CardFooterComponent } from "./prt-ui/prt-card/card-footer/card-footer.component";
+import { BtnGroupComponent } from "./prt-ui/btn-group/btn-group.component";
 
 @Component({
   selector: 'app-root',
-  imports: [PrtButton, ThemeToggleBtnComponent, DialogContainerComponent, PrtButton, ToastListComponent, CardContainerComponent, CardHeaderComponent, CardBodyComponent, CardFooterComponent],
+  imports: [PrtButton, ThemeToggleBtnComponent, DialogContainerComponent, PrtButton, ToastListComponent, CardContainerComponent, CardHeaderComponent, CardBodyComponent, CardFooterComponent, BtnGroupComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
   dialog = inject(DialogService)
   toast = inject(ToastService)
+
+  buttonGroup = [
+    {
+      label: 'Productos',
+      route: 'productos'
+    },
+    {
+      label: 'Ingredientes',
+      route: 'ingredientes'
+    }
+  ]
 
   openDialogTest() {
     this.dialog.openDialog(PrtButton)
