@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { ThemeService } from '../../core/services/theme.service';
 import { PrtButton } from "../prt-button/prt-button.component";
 
@@ -9,6 +9,7 @@ import { PrtButton } from "../prt-button/prt-button.component";
 })
 export class ThemeToggleBtnComponent {
   theme = inject(ThemeService)
+  variant = input<'default' | 'outlined' | 'secondary' | 'ghost' | 'destructive'>('default')
 
   toggleTheme() {
     this.theme.toggleTheme()
