@@ -1,1 +1,14 @@
-<p>buttons works!</p>
+<div class="flex flex-col gap-4">
+  <div>
+    <h2 class="text-4xl font-bold">Button</h2>
+    <span class="text-muted">
+      Displays a button or a component that looks like a button.
+    </span>
+  </div>
+  <div class="border border-border rounded-2xl h-72 grid place-items-center">
+    <div class="flex gap-2">
+      <prt-button [variant]="'secondary'" [label]="'Button'" icon="check" />
+      <prt-button [variant]="'secondary'" icon="check" />
+    </div>
+  </div>
+</div>
