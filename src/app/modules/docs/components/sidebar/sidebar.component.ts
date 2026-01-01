@@ -16,20 +16,24 @@ interface ButtonInterface {
 export class SidebarComponent {
   buttons: ButtonInterface[] = [
     {
-      label: 'Buttons',
-      route: 'buttons'
+      label: 'Button',
+      route: 'button'
     },
     {
-      label: 'Dialogs',
-      route: 'dialogs'
+      label: 'Dialog',
+      route: 'dialog'
     },
     {
-      label: 'Toasts',
-      route: 'toasts'
+      label: 'Toast',
+      route: 'toast'
     },
     {
       label: 'Card',
       route: 'card'
+    },
+    {
+      label: 'Key Binding',
+      route: 'kbd'
     },
     {
       label: 'Tabs (router)',

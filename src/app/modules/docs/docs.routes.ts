@@ -5,13 +5,15 @@ import { DialogComponent } from './routes/dialog/dialog.component';
 import { TabsComponent } from './routes/tabs/tabs.component';
 import { TabsRouterComponent } from './routes/tabs-router/tabs-router.component';
 import { ToastsComponent } from './routes/toasts/toasts.component';
+import { KbdRouteComponent } from './routes/kbd-route/kbd-route.component';
 
 export const docsRoutes: Routes = [
-  { path: 'buttons', component: ButtonsComponent },
-  { path: 'dialogs', component: DialogComponent },
-  { path: 'toasts', component: ToastsComponent },
+  { path: 'button', component: ButtonsComponent },
+  { path: 'dialog', component: DialogComponent },
+  { path: 'toast', component: ToastsComponent },
   { path: 'card', component: CardComponent },
   { path: 'router-tabs', component: TabsRouterComponent },
   { path: 'tabs', component: TabsComponent },
-  { path: '', redirectTo: 'buttons', pathMatch: 'full' }
+  { path: 'kbd', component: KbdRouteComponent },
+  { path: '', redirectTo: 'button', pathMatch: 'full' }
 ];
