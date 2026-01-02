@@ -5,10 +5,38 @@
       Displays a button or a component that looks like a button.
     </span>
   </div>
-  <div class="border border-border rounded-2xl h-72 grid place-items-center">
-    <div class="flex gap-2">
-      <prt-button [variant]="'secondary'" [label]="'Button'" icon="check" />
-      <prt-button [variant]="'secondary'" icon="check" />
+  
+  <div class="border border-border rounded-2xl p-8 grid place-items-center">
+    <div class="flex flex-col gap-6">
+      <div class="flex gap-2 items-center">
+        <prt-button [variant]="'default'" [label]="'Default'" />
+        <prt-button [variant]="'default'" [label]="'Default'" [icon]="'check'" />
+        <prt-button [variant]="'default'" [icon]="'check'" />
+      </div>
+      
+      <div class="flex gap-2 items-center">
+        <prt-button [variant]="'outlined'" [label]="'Outlined'" />
+        <prt-button [variant]="'outlined'" [label]="'Outlined'" [icon]="'settings'" />
+        <prt-button [variant]="'outlined'" [icon]="'settings'" />
+      </div>
+      
+      <div class="flex gap-2 items-center">
+        <prt-button [variant]="'secondary'" [label]="'Secondary'" />
+        <prt-button [variant]="'secondary'" [label]="'Secondary'" [icon]="'star'" />
+        <prt-button [variant]="'secondary'" [icon]="'star'" />
+      </div>
+      
+      <div class="flex gap-2 items-center">
+        <prt-button [variant]="'ghost'" [label]="'Ghost'" />
+        <prt-button [variant]="'ghost'" [label]="'Ghost'" [icon]="'visibility'" />
+        <prt-button [variant]="'ghost'" [icon]="'visibility'" />
+      </div>
+      
+      <div class="flex gap-2 items-center">
+        <prt-button [variant]="'destructive'" [label]="'Destructive'" />
+        <prt-button [variant]="'destructive'" [label]="'Destructive'" [icon]="'delete'" />
+        <prt-button [variant]="'destructive'" [icon]="'delete'" />
+      </div>
     </div>
   </div>
 </div>

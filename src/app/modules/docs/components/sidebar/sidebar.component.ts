@@ -2,11 +2,7 @@ import { Component, inject, input } from '@angular/core';
 import { Router, UrlTree } from '@angular/router';
 import { ThemeToggleBtnComponent } from '../../../../prt-ui/theme-toggle-btn/theme-toggle-btn.component';
 import { PrtButton } from '../../../../prt-ui/prt-button/prt-button.component';
-
-interface ButtonInterface {
-  label: string,
-  route: string
-}
+import { ButtonInterface } from '../../../../core/interfaces/buttonList';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,6 +14,10 @@ export class SidebarComponent {
     {
       label: 'Button',
       route: 'button'
+    },
+    {
+      label: 'Button Group',
+      route: 'button-group'
     },
     {
       label: 'Dialog',
