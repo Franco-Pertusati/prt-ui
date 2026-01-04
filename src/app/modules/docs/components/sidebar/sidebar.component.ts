@@ -20,6 +20,10 @@ export class SidebarComponent {
       route: 'button-group'
     },
     {
+      label: 'Check-box',
+      route: 'check-box'
+    },
+    {
       label: 'Dialog',
       route: 'dialog'
     },
@@ -42,7 +46,7 @@ export class SidebarComponent {
     {
       label: 'Tabs (no router)',
       route: 'tabs'
-    }
+    },
   ]
 
   router = inject(Router)

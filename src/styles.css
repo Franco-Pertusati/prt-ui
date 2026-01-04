@@ -53,6 +53,9 @@ button {
   cursor: pointer;
 }
 
+button:focus {
+}
+
 .material-symbols-rounded {
   font-size: 22px;
 }

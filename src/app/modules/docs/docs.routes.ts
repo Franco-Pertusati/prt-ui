@@ -7,6 +7,7 @@ import { TabsRouterComponent } from './routes/tabs-router/tabs-router.component'
 import { ToastsComponent } from './routes/toasts/toasts.component';
 import { KbdRouteComponent } from './routes/kbd-route/kbd-route.component';
 import { ButtonGroupRouteComponent } from './routes/button-group-route/button-group-route.component';
+import { CheckBoxRouteComponent } from './routes/check-box-route/check-box-route.component';
 
 export const docsRoutes: Routes = [
   { path: 'button', component: ButtonsComponent },
@@ -17,5 +18,6 @@ export const docsRoutes: Routes = [
   { path: 'tabs', component: TabsComponent },
   { path: 'kbd', component: KbdRouteComponent },
   { path: 'button-group', component: ButtonGroupRouteComponent },
+  { path: 'check-box', component: CheckBoxRouteComponent },
   { path: '', redirectTo: 'button', pathMatch: 'full' }
 ];
