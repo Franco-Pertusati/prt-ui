@@ -14,65 +14,48 @@ export class PrtCheckBoxComponent {
   size = input<'sm' | 'md' | 'lg'>('md');
 
   icon = input<string>('check');
-  iconChecked = input<string>('check_box');
-  iconUnchecked = input<string>('check_box_outline_blank');
+  iconChecked = input<string>();
+  iconUnchecked = input<string>();
   showIcon = input<boolean>(true);
   showLabel = input<boolean>(true);
 
   checked = model<boolean>(false);
 
-    containerClasses = computed(() => {
-    const base = 'flex items-center gap-2 cursor-pointer select-none';
+  containerClasses = computed(() => {
+    const variants = {
+      default: this.checked()? 'bg-text text-dark' : 'bg-dark text-text hover:bg-light',
+      outlined: 'border border-border hover:bg-neutral',
+      secondary: 'bg-light',
+      ghost: 'bg-transparent hover:bg-neutral',
+    };
+    const base = 'inline-flex items-center justify-center gap-1.5 rounded-xl font-medium cursor-pointer select-none';
     const disabled = this.disabled() ? 'opacity-50 cursor-not-allowed' : '';
-    return `${base} ${disabled}`;
+    const padding = !this.showLabel() || !this.label() ? 'p-1.5' : 'px-3 py-1.5';
+    return `${base} ${disabled} ${variants[this.variant()]} ${padding}`;
   });
-  
+
   checkboxClasses = computed(() => {
     const sizes = {
       sm: 'w-4 h-4 text-xs',
       md: 'w-5 h-5 text-sm',
       lg: 'w-6 h-6 text-base'
     };
-    
-    const baseClasses = 'flex items-center justify-center rounded';
-    
-    const variants = {
-      default: this.checked()
-        ? 'bg-primary '
-        : '',
-      outlined: this.checked()
-        ? 'bg-transparent border-2 border-primary text-primary'
-        : 'bg-transparent border-2',
-      filled: this.checked()
-        ? 'bg-primary text-primary-foreground'
-        : 'bg-muted text-muted-foreground hover:bg-muted/80',
-      ghost: this.checked()
-        ? 'bg-primary/10 text-primary'
-        : 'bg-transparent text-muted-foreground hover:bg-muted',
-      secondary: this.checked()
-        ? 'bg-secondary text-secondary-foreground border-secondary'
-        : 'bg-background',
-      destructive: this.checked()
-        ? 'bg-destructive text-destructive-foreground border-destructive'
-        : 'bg-background'
-    };
-    
-    return `${baseClasses} ${sizes[this.size()]} ${variants[this.variant()]}`;
+    const base = 'flex items-center justify-center rounded';
+    return `${base} ${sizes[this.size()]}`;
   });
-  
+
   labelClasses = computed(() => {
     const sizes = {
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg'
     };
-    
-    const base = 'transition-colors';
+
     const checked = this.checked() ? 'font-medium' : '';
-    
-    return `${base} ${sizes[this.size()]} ${checked}`;
+
+    return `${sizes[this.size()]} ${checked}`;
   });
-  
+
   onToggle() {
     if (!this.disabled()) {
       this.checked.set(!this.checked());

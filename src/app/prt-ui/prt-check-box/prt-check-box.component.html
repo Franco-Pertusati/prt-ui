@@ -11,6 +11,7 @@ showIcon(), showLabel: showLabel(), checked: checked(), disabled: disabled() };
     class="sr-only"
   />
 
+  @if (config.iconChecked || config.icon) {
   <div [class]="checkboxClasses()">
     @if (config.showIcon) { @if (config.checked && config.iconChecked) {
     <i class="material-symbols-rounded">{{ config.iconChecked }}</i>
@@ -21,7 +22,7 @@ showIcon(), showLabel: showLabel(), checked: checked(), disabled: disabled() };
     } }
   </div>
 
-  @if (config.showLabel && (config.label || config.labelChecked)) {
+  } @if (config.showLabel && (config.label || config.labelChecked)) {
   <span [class]="labelClasses()">
     {{
       config.checked && config.labelChecked ? config.labelChecked : config.label
