@@ -7,6 +7,23 @@
   </div>
 
   <div class="border border-border rounded-2xl p-8 grid place-items-center">
-    <prt-check-box [variant]="'default'" [label]="'Componente deshabilitado'" labelChecked="Componente habilitado" iconChecked="check" />
+    <div class="flex gap-2 flex-wrap">
+      <prt-check-box
+        [variant]="'default'"
+        [label]="'Bebidas'"
+        icon="check_box_outline_blank"
+        [iconChecked]="'check_box'"
+      />
+      <prt-check-box
+        [variant]="'default'"
+        [label]="'Pastas'"
+        [iconChecked]="'check'"
+      />
+      <prt-check-box
+        [variant]="'default'"
+        [label]="'Postres'"
+        [iconChecked]="'check'"
+      />
+    </div>
   </div>
 </div>

@@ -11,17 +11,17 @@ showIcon(), showLabel: showLabel(), checked: checked(), disabled: disabled() };
     class="sr-only"
   />
 
-  @if (config.iconChecked || config.icon) {
+  @if (config.showIcon && (config.icon || config.iconChecked ||
+  config.iconUnchecked)) {
   <div [class]="checkboxClasses()">
-    @if (config.showIcon) { @if (config.checked && config.iconChecked) {
+    @if (config.checked && config.iconChecked) {
     <i class="material-symbols-rounded">{{ config.iconChecked }}</i>
     } @else if (!config.checked && config.iconUnchecked) {
     <i class="material-symbols-rounded">{{ config.iconUnchecked }}</i>
-    } @else if (config.checked && config.icon) {
+    } @else if (config.icon) {
     <i class="material-symbols-rounded">{{ config.icon }}</i>
-    } }
+    }
   </div>
-
   } @if (config.showLabel && (config.label || config.labelChecked)) {
   <span [class]="labelClasses()">
     {{

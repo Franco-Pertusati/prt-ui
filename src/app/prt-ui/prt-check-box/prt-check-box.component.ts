@@ -13,7 +13,7 @@ export class PrtCheckBoxComponent {
   variant = input<'default' | 'outlined' | 'secondary' | 'ghost'>('default');
   size = input<'sm' | 'md' | 'lg'>('md');
 
-  icon = input<string>('check');
+  icon = input<string>();
   iconChecked = input<string>();
   iconUnchecked = input<string>();
   showIcon = input<boolean>(true);
@@ -36,9 +36,9 @@ export class PrtCheckBoxComponent {
 
   checkboxClasses = computed(() => {
     const sizes = {
-      sm: 'w-4 h-4 text-xs',
-      md: 'w-5 h-5 text-sm',
-      lg: 'w-6 h-6 text-base'
+      sm: 'text-xs',
+      md: 'text-sm',
+      lg: 'text-base'
     };
     const base = 'flex items-center justify-center rounded';
     return `${base} ${sizes[this.size()]}`;
