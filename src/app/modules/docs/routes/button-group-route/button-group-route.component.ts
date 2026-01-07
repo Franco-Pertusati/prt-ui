@@ -1,8 +1,8 @@
 import { Component, Type } from '@angular/core';
 import { ButtonGroupComponent } from "../../../../prt-ui/button-group/button-group.component";
-import { ProductsListComponent } from '../../../sgTests/products-list/products-list.component';
+import { ProductsListComponent } from '../../../salon/components/products-list/products-list.component';
 import { TabItem } from '../../../../core/interfaces/buttonList';
-import { ComandaPanelComponent } from '../../../sgTests/comanda-panel/comanda-panel.component';
+import { ComandaPanelComponent } from '../../../salon/components/comanda-panel/comanda-panel.component';
 
 @Component({
   selector: 'app-button-group-route',

@@ -23,9 +23,9 @@ export class PrtCheckBoxComponent {
 
   containerClasses = computed(() => {
     const variants = {
-      default: this.checked()? 'bg-text text-dark' : 'bg-dark text-text hover:bg-light',
+      default: this.checked() ? 'bg-text text-dark' : 'bg-dark text-text hover:bg-light',
       outlined: 'border border-border hover:bg-neutral',
-      secondary: 'bg-light',
+      secondary: this.checked() ? 'bg-text text-dark' : 'bg-light',
       ghost: 'bg-transparent hover:bg-neutral',
     };
     const base = 'inline-flex items-center justify-center gap-1.5 rounded-xl font-medium cursor-pointer select-none';

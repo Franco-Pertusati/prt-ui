@@ -1,4 +1,3 @@
-// src/app/services/theme.service.ts
 import { Injectable, signal, effect } from '@angular/core';
 
 type Theme = 'light' | 'dark';
