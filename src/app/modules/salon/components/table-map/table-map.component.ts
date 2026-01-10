@@ -14,14 +14,14 @@ export class TableMapComponent {
     private salonService: SalonService,
     private router: Router
   ) {
-    this.dinningTables = this.salonService.getMesas();
+    this.dinningTables = this.salonService.gettables();
   }
 
-  goToMesaDetalle(mesaId: number): void {
-    this.router.navigate(['/salon/table', mesaId]);
+  goTotableDetalle(tableId: number): void {
+    this.router.navigate(['/salon/table', tableId]);
   }
 
-  calculateTableTotal(mesaId: number): number {
-    return this.salonService.calculateTableTotal(mesaId);
+  calculateTableTotal(tableId: number): number {
+    return this.salonService.calculateTableTotal(tableId);
   }
 }

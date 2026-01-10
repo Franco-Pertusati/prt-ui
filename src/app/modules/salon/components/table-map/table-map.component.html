@@ -1,18 +1,20 @@
-<div class="w-full p-2 gap-2 overflow-y-auto flex flex-wrap h-fit">
-  @for (table of dinningTables; track $index) {
-  <button
-    class="flex flex-col p-1 grow rounded-xl min-w-32 h-32 border-border border bg-dark"
-    (click)="goToMesaDetalle(table.id)"
-  >
-    <div class="grid grow place-items-center font-bold text-2xl">
-      <span class="grow">
-        {{ table.name }}
-      </span>
-    </div>
-    <div
-      [style]="`background-color: ${table.step.color}`"
-      class="w-full h-4 rounded-lg"
-    ></div>
-  </button>
-  }
+<div class="max-w-7xl mx-auto h-full">
+  <div class="w-full gap-2 overflow-y-auto flex flex-wrap h-full">
+    @for (table of dinningTables; track $index) {
+    <button
+      class="flex flex-col p-1 grow rounded-xl min-w-28 h-28 border-border border bg-dark hover:bg-neutral"
+      (click)="goTotableDetalle(table.id)"
+    >
+      <div class="grid grow place-items-center font-bold text-2xl">
+        <span class="grow">
+          {{ table.name }}
+        </span>
+      </div>
+      <div
+        [style]="`background-color: ${table.step.color}`"
+        class="w-full h-4 rounded-lg"
+      ></div>
+    </button>
+    }
+  </div>
 </div>

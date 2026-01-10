@@ -97,7 +97,7 @@ export class SalonService {
       { id: 6, name: 'Cuenta pagada', color: '#10B981' }
     ];
 
-    // 30 Mesas con datos variados
+    // 30 tables con datos variados
     this.dinningTables = [
       {
         id: 1,
@@ -556,11 +556,11 @@ export class SalonService {
   }
 
   // Métodos públicos para acceder a los datos
-  getMesas(): DinningTable[] {
+  gettables(): DinningTable[] {
     return this.dinningTables;
   }
 
-  getMesaById(id: number): DinningTable | undefined {
+  gettableById(id: number): DinningTable | undefined {
     return this.dinningTables.find(m => m.id === id);
   }
 
@@ -603,7 +603,7 @@ export class SalonService {
     }
   }
 
-  // Cobrar una mesa
+  // Cobrar una table
   payTable(tableId: number): void {
     const table = this.dinningTables.find(t => t.id === tableId);
     if (table) {
@@ -619,7 +619,7 @@ export class SalonService {
     return check.Products.reduce((total, product) => total + product.price, 0);
   }
 
-  // Calcular total de una mesa
+  // Calcular total de una table
   calculateTableTotal(tableId: number): number {
     const table = this.dinningTables.find(t => t.id === tableId);
     if (table) {
