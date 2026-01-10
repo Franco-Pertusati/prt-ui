@@ -2,13 +2,11 @@ import { Component } from '@angular/core';
 import { Check, DinningTable, SalonService } from '../../../../core/services/salon.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ButtonGroupComponent } from "../../../../prt-ui/button-group/button-group.component";
-import { CardBodyComponent } from '../../../../prt-ui/prt-card/card-body/card-body.component';
-import { CardContainerComponent } from "../../../../prt-ui/prt-card/card-container/card-container.component";
+import { EmptyTableComponent } from "../empty-table/empty-table.component";
 
 @Component({
   selector: 'app-table-detail',
-  imports: [CommonModule, ButtonGroupComponent, CardBodyComponent, CardContainerComponent],
+  imports: [CommonModule, EmptyTableComponent],
   templateUrl: './table-detail.component.html'
 })
 export class TableDetailComponent {

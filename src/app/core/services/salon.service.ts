@@ -12,10 +12,18 @@ export interface Category {
   name: string
 }
 
+export interface CheckProduct {
+  product: Product;
+  quantity: number;
+  notes: string;
+  addedAt: Date;
+  subtotal: number;
+}
+
 export interface Check {
   id: number,
   name: string,
-  Products: Product[]
+  items: CheckProduct[]
 }
 
 export interface Step {
@@ -28,7 +36,9 @@ export interface DinningTable {
   id: number,
   step: Step,
   name: string,
-  checks: Check[]
+  checks: Check[],
+  openedAt: Date | null,
+  closedAt: Date | null
 }
 
 @Injectable({
@@ -39,6 +49,7 @@ export class SalonService {
   private products: Product[] = [];
   private categories: Category[] = [];
   private steps: Step[] = [];
+  private checkIdCounter: number = 1;
 
   constructor() {
     this.initializeData();
@@ -90,27 +101,48 @@ export class SalonService {
     // Steps
     this.steps = [
       { id: 1, name: 'Sin pedido', color: '#9CA3AF' },
-      { id: 2, name: 'Entrada', color: '#F59E0B' },
-      { id: 3, name: 'Plato principal', color: '#EF4444' },
-      { id: 4, name: 'Postres', color: '#EC4899' },
-      { id: 5, name: 'Esperando cuenta', color: '#8B5CF6' },
-      { id: 6, name: 'Cuenta pagada', color: '#10B981' }
+      { id: 2, name: 'Entrada', color: '#ff595e' },
+      { id: 3, name: 'Plato principal', color: '#ffca3a' },
+      { id: 4, name: 'Postre', color: '#1982c4' },
+      { id: 5, name: 'Esperando cuenta', color: '#6a4c93' },
     ];
 
-    // 30 tables con datos variados
+    // 12 tables con datos variados
+    const now = new Date();
+    
     this.dinningTables = [
       {
         id: 1,
         name: '1',
         step: this.steps[2],
+        openedAt: new Date(now.getTime() - 45 * 60000), // Abierta hace 45 minutos
+        closedAt: null,
         checks: [
           {
-            id: 1,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[0],
-              this.products[4],
-              this.products[20]
+            items: [
+              {
+                product: this.products[0],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 40 * 60000),
+                subtotal: this.products[0].price * 2
+              },
+              {
+                product: this.products[4],
+                quantity: 1,
+                notes: 'Sin ajo',
+                addedAt: new Date(now.getTime() - 25 * 60000),
+                subtotal: this.products[4].price
+              },
+              {
+                product: this.products[20],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 40 * 60000),
+                subtotal: this.products[20].price * 2
+              }
             ]
           }
         ]
@@ -119,26 +151,42 @@ export class SalonService {
         id: 2,
         name: '2',
         step: this.steps[0],
-        checks: [
-          {
-            id: 2,
-            name: 'Cuenta 1',
-            Products: []
-          }
-        ]
+        openedAt: null,
+        closedAt: null,
+        checks: []
       },
       {
         id: 3,
         name: '3',
         step: this.steps[3],
+        openedAt: new Date(now.getTime() - 60 * 60000), // Abierta hace 1 hora
+        closedAt: null,
         checks: [
           {
-            id: 3,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[1],
-              this.products[8],
-              this.products[15]
+            items: [
+              {
+                product: this.products[1],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 55 * 60000),
+                subtotal: this.products[1].price
+              },
+              {
+                product: this.products[8],
+                quantity: 2,
+                notes: 'Extra queso',
+                addedAt: new Date(now.getTime() - 35 * 60000),
+                subtotal: this.products[8].price * 2
+              },
+              {
+                product: this.products[15],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 5 * 60000),
+                subtotal: this.products[15].price
+              }
             ]
           }
         ]
@@ -147,15 +195,41 @@ export class SalonService {
         id: 4,
         name: '4',
         step: this.steps[4],
+        openedAt: new Date(now.getTime() - 90 * 60000), // Abierta hace 1.5 horas
+        closedAt: null,
         checks: [
           {
-            id: 4,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[2],
-              this.products[6],
-              this.products[16],
-              this.products[19]
+            items: [
+              {
+                product: this.products[2],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 85 * 60000),
+                subtotal: this.products[2].price
+              },
+              {
+                product: this.products[6],
+                quantity: 3,
+                notes: '',
+                addedAt: new Date(now.getTime() - 60 * 60000),
+                subtotal: this.products[6].price * 3
+              },
+              {
+                product: this.products[16],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 10 * 60000),
+                subtotal: this.products[16].price * 2
+              },
+              {
+                product: this.products[21],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 85 * 60000),
+                subtotal: this.products[21].price
+              }
             ]
           }
         ]
@@ -164,12 +238,27 @@ export class SalonService {
         id: 5,
         name: '5',
         step: this.steps[1],
+        openedAt: new Date(now.getTime() - 15 * 60000), // Abierta hace 15 minutos
+        closedAt: null,
         checks: [
           {
-            id: 5,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[3]
+            items: [
+              {
+                product: this.products[3],
+                quantity: 4,
+                notes: '',
+                addedAt: new Date(now.getTime() - 10 * 60000),
+                subtotal: this.products[3].price * 4
+              },
+              {
+                product: this.products[19],
+                quantity: 4,
+                notes: '',
+                addedAt: new Date(now.getTime() - 10 * 60000),
+                subtotal: this.products[19].price * 4
+              }
             ]
           }
         ]
@@ -178,14 +267,34 @@ export class SalonService {
         id: 6,
         name: '6',
         step: this.steps[2],
+        openedAt: new Date(now.getTime() - 50 * 60000),
+        closedAt: null,
         checks: [
           {
-            id: 6,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[0],
-              this.products[9],
-              this.products[21]
+            items: [
+              {
+                product: this.products[0],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 45 * 60000),
+                subtotal: this.products[0].price
+              },
+              {
+                product: this.products[9],
+                quantity: 2,
+                notes: 'Una sin hongos',
+                addedAt: new Date(now.getTime() - 30 * 60000),
+                subtotal: this.products[9].price * 2
+              },
+              {
+                product: this.products[22],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 45 * 60000),
+                subtotal: this.products[22].price
+              }
             ]
           }
         ]
@@ -193,27 +302,43 @@ export class SalonService {
       {
         id: 7,
         name: '7',
-        step: this.steps[5],
-        checks: [
-          {
-            id: 7,
-            name: 'Cuenta 1',
-            Products: []
-          }
-        ]
+        step: this.steps[0],
+        openedAt: null,
+        closedAt: null,
+        checks: []
       },
       {
         id: 8,
         name: '8',
         step: this.steps[2],
+        openedAt: new Date(now.getTime() - 35 * 60000),
+        closedAt: null,
         checks: [
           {
-            id: 8,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[1],
-              this.products[5],
-              this.products[22]
+            items: [
+              {
+                product: this.products[1],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 30 * 60000),
+                subtotal: this.products[1].price * 2
+              },
+              {
+                product: this.products[13],
+                quantity: 1,
+                notes: 'Término medio',
+                addedAt: new Date(now.getTime() - 20 * 60000),
+                subtotal: this.products[13].price
+              },
+              {
+                product: this.products[14],
+                quantity: 1,
+                notes: 'Bien cocido',
+                addedAt: new Date(now.getTime() - 20 * 60000),
+                subtotal: this.products[14].price
+              }
             ]
           }
         ]
@@ -222,13 +347,27 @@ export class SalonService {
         id: 9,
         name: '9',
         step: this.steps[1],
+        openedAt: new Date(now.getTime() - 20 * 60000),
+        closedAt: null,
         checks: [
           {
-            id: 9,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[2],
-              this.products[20]
+            items: [
+              {
+                product: this.products[2],
+                quantity: 3,
+                notes: '',
+                addedAt: new Date(now.getTime() - 15 * 60000),
+                subtotal: this.products[2].price * 3
+              },
+              {
+                product: this.products[20],
+                quantity: 3,
+                notes: '',
+                addedAt: new Date(now.getTime() - 15 * 60000),
+                subtotal: this.products[20].price * 3
+              }
             ]
           }
         ]
@@ -237,15 +376,41 @@ export class SalonService {
         id: 10,
         name: '10',
         step: this.steps[3],
+        openedAt: new Date(now.getTime() - 70 * 60000),
+        closedAt: null,
         checks: [
           {
-            id: 10,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[3],
-              this.products[10],
-              this.products[17],
-              this.products[22]
+            items: [
+              {
+                product: this.products[3],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 65 * 60000),
+                subtotal: this.products[3].price * 2
+              },
+              {
+                product: this.products[10],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 45 * 60000),
+                subtotal: this.products[10].price
+              },
+              {
+                product: this.products[11],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 45 * 60000),
+                subtotal: this.products[11].price
+              },
+              {
+                product: this.products[17],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 8 * 60000),
+                subtotal: this.products[17].price * 2
+              }
             ]
           }
         ]
@@ -254,301 +419,57 @@ export class SalonService {
         id: 11,
         name: '11',
         step: this.steps[0],
-        checks: [
-          {
-            id: 11,
-            name: 'Cuenta 1',
-            Products: []
-          }
-        ]
+        openedAt: null,
+        closedAt: null,
+        checks: []
       },
       {
         id: 12,
         name: '12',
-        step: this.steps[2],
-        checks: [
-          {
-            id: 12,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[0],
-              this.products[13],
-              this.products[21]
-            ]
-          }
-        ]
-      },
-      {
-        id: 13,
-        name: '13',
         step: this.steps[4],
+        openedAt: new Date(now.getTime() - 80 * 60000),
+        closedAt: null,
         checks: [
           {
-            id: 13,
+            id: this.checkIdCounter++,
             name: 'Cuenta 1',
-            Products: [
-              this.products[1],
-              this.products[7],
-              this.products[16],
-              this.products[20]
+            items: [
+              {
+                product: this.products[0],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 75 * 60000),
+                subtotal: this.products[0].price * 2
+              },
+              {
+                product: this.products[5],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 55 * 60000),
+                subtotal: this.products[5].price
+              },
+              {
+                product: this.products[7],
+                quantity: 1,
+                notes: 'Extra salsa',
+                addedAt: new Date(now.getTime() - 55 * 60000),
+                subtotal: this.products[7].price
+              },
+              {
+                product: this.products[18],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 12 * 60000),
+                subtotal: this.products[18].price * 2
+              },
+              {
+                product: this.products[22],
+                quantity: 2,
+                notes: '',
+                addedAt: new Date(now.getTime() - 75 * 60000),
+                subtotal: this.products[22].price * 2
+              }
             ]
-          }
-        ]
-      },
-      {
-        id: 14,
-        name: '14',
-        step: this.steps[1],
-        checks: [
-          {
-            id: 14,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[3],
-              this.products[19]
-            ]
-          }
-        ]
-      },
-      {
-        id: 15,
-        name: '15',
-        step: this.steps[2],
-        checks: [
-          {
-            id: 15,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[2],
-              this.products[11],
-              this.products[22]
-            ]
-          }
-        ]
-      },
-      {
-        id: 16,
-        name: '16',
-        step: this.steps[3],
-        checks: [
-          {
-            id: 16,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[0],
-              this.products[5],
-              this.products[18]
-            ]
-          }
-        ]
-      },
-      {
-        id: 17,
-        name: '17',
-        step: this.steps[0],
-        checks: [
-          {
-            id: 17,
-            name: 'Cuenta 1',
-            Products: []
-          }
-        ]
-      },
-      {
-        id: 18,
-        name: '18',
-        step: this.steps[2],
-        checks: [
-          {
-            id: 18,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[1],
-              this.products[14],
-              this.products[20],
-              this.products[21]
-            ]
-          }
-        ]
-      },
-      {
-        id: 19,
-        name: '19',
-        step: this.steps[4],
-        checks: [
-          {
-            id: 19,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[3],
-              this.products[6],
-              this.products[15],
-              this.products[22]
-            ]
-          }
-        ]
-      },
-      {
-        id: 20,
-        name: '20',
-        step: this.steps[1],
-        checks: [
-          {
-            id: 20,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[0],
-              this.products[19]
-            ]
-          }
-        ]
-      },
-      {
-        id: 21,
-        name: '21',
-        step: this.steps[2],
-        checks: [
-          {
-            id: 21,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[2],
-              this.products[8],
-              this.products[20]
-            ]
-          }
-        ]
-      },
-      {
-        id: 22,
-        name: '22',
-        step: this.steps[5],
-        checks: [
-          {
-            id: 22,
-            name: 'Cuenta 1',
-            Products: []
-          }
-        ]
-      },
-      {
-        id: 23,
-        name: '23',
-        step: this.steps[3],
-        checks: [
-          {
-            id: 23,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[1],
-              this.products[10],
-              this.products[16],
-              this.products[21]
-            ]
-          }
-        ]
-      },
-      {
-        id: 24,
-        name: '24',
-        step: this.steps[0],
-        checks: [
-          {
-            id: 24,
-            name: 'Cuenta 1',
-            Products: []
-          }
-        ]
-      },
-      {
-        id: 25,
-        name: '25',
-        step: this.steps[2],
-        checks: [
-          {
-            id: 25,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[3],
-              this.products[4],
-              this.products[22]
-            ]
-          }
-        ]
-      },
-      {
-        id: 26,
-        name: '26',
-        step: this.steps[1],
-        checks: [
-          {
-            id: 26,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[0],
-              this.products[20]
-            ]
-          }
-        ]
-      },
-      {
-        id: 27,
-        name: '27',
-        step: this.steps[4],
-        checks: [
-          {
-            id: 27,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[2],
-              this.products[9],
-              this.products[17],
-              this.products[19]
-            ]
-          }
-        ]
-      },
-      {
-        id: 28,
-        name: '28',
-        step: this.steps[2],
-        checks: [
-          {
-            id: 28,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[1],
-              this.products[12],
-              this.products[21]
-            ]
-          }
-        ]
-      },
-      {
-        id: 29,
-        name: '29',
-        step: this.steps[3],
-        checks: [
-          {
-            id: 29,
-            name: 'Cuenta 1',
-            Products: [
-              this.products[3],
-              this.products[7],
-              this.products[18]
-            ]
-          }
-        ]
-      },
-      {
-        id: 30,
-        name: '30',
-        step: this.steps[0],
-        checks: [
-          {
-            id: 30,
-            name: 'Cuenta 1',
-            Products: []
           }
         ]
       }
@@ -577,46 +498,83 @@ export class SalonService {
   }
 
   // Agregar producto a una cuenta
-  addProductToCheck(tableId: number, checkId: number, product: Product): void {
+  addProductToCheck(tableId: number, checkId: number, product: Product, quantity: number = 1, notes: string = ''): void {
     const table = this.dinningTables.find(t => t.id === tableId);
     if (table) {
       const check = table.checks.find(c => c.id === checkId);
       if (check) {
-        check.Products.push(product);
+        // Buscar si el producto ya existe con las mismas notas
+        const existing = check.items.find(item => 
+          item.product.id === product.id && item.notes === notes
+        );
+
+        if (existing) {
+          existing.quantity += quantity;
+          existing.subtotal = existing.product.price * existing.quantity;
+        } else {
+          check.items.push({
+            product: product,
+            quantity: quantity,
+            notes: notes,
+            addedAt: new Date(),
+            subtotal: product.price * quantity
+          });
+        }
+        
         this.updateTableStep(tableId, product.category);
       }
     }
   }
 
-  // Eliminar producto de una cuenta
-  removeProductFromCheck(tableId: number, checkId: number, productIndex: number): void {
+  // Eliminar o reducir cantidad de producto
+  removeProductFromCheck(tableId: number, checkId: number, itemIndex: number, quantityToRemove: number = 1): void {
     const table = this.dinningTables.find(t => t.id === tableId);
     if (table) {
       const check = table.checks.find(c => c.id === checkId);
-      if (check && productIndex >= 0 && productIndex < check.Products.length) {
-        check.Products.splice(productIndex, 1);
+      if (check && itemIndex >= 0 && itemIndex < check.items.length) {
+        const item = check.items[itemIndex];
         
-        if (check.Products.length === 0) {
+        if (item.quantity <= quantityToRemove) {
+          check.items.splice(itemIndex, 1);
+        } else {
+          item.quantity -= quantityToRemove;
+          item.subtotal = item.product.price * item.quantity;
+        }
+        
+        if (check.items.length === 0) {
           table.step = this.steps[0];
         }
       }
     }
   }
 
-  // Cobrar una table
+  // Cobrar una - limpia todas las cuentas y cierra la table
   payTable(tableId: number): void {
     const table = this.dinningTables.find(t => t.id === tableId);
     if (table) {
-      table.checks.forEach(check => {
-        check.Products = [];
+      table.checks = [];
+      table.closedAt = new Date();
+      table.step = this.steps[0]; // Sin pedido
+    }
+  }
+
+  // Abrir una - crea la primera cuenta
+  openTable(tableId: number): void {
+    const table = this.dinningTables.find(t => t.id === tableId);
+    if (table && table.checks.length === 0) {
+      table.openedAt = new Date();
+      table.closedAt = null;
+      table.checks.push({
+        id: this.checkIdCounter++,
+        name: 'Cuenta 1',
+        items: []
       });
-      table.step = this.steps[5];
     }
   }
 
   // Calcular total de una cuenta
   calculateCheckTotal(check: Check): number {
-    return check.Products.reduce((total, product) => total + product.price, 0);
+    return check.items.reduce((total, item) => total + item.subtotal, 0);
   }
 
   // Calcular total de una table
@@ -660,6 +618,19 @@ export class SalonService {
     const table = this.dinningTables.find(t => t.id === tableId);
     if (table) {
       table.step = this.steps[4];
+    }
+  }
+
+  // Agregar una nueva cuenta a una table
+  addCheckToTable(tableId: number): void {
+    const table = this.dinningTables.find(t => t.id === tableId);
+    if (table) {
+      const checkNumber = table.checks.length + 1;
+      table.checks.push({
+        id: this.checkIdCounter++,
+        name: `Cuenta ${checkNumber}`,
+        items: []
+      });
     }
   }
 }
