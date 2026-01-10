@@ -2,7 +2,7 @@
 
 <button [class]="classes()" (click)="btnClick.emit()">
   @if (btn.showIcon && btn.icon) {
-    <i class="material-symbols-rounded text-sm">{{ btn.icon }}</i>
+    <i class="material-symbols-rounded">{{ btn.icon }}</i>
   }
   @if (btn.showLabel && btn.label) {
     <span>{{ btn.label }}</span>

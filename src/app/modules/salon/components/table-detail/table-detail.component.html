@@ -1,10 +1,18 @@
-<div class="max-w-7xl mx-auto px-2 bg-neutral">
-  <h2 class="font-bold text-center my-2 text-xl">
-    Mesa: {{ table?.name }}
+<div class="max-w-7xl mx-auto bg-neutral">
+  @if (table) {
+  <h2 class="font-bold text-center my-2 text-xl px-2">
+    Mesa: {{ table.name }}
   </h2>
   <div class="flex flex-col w-full gap-2">
-    @if (table?.checks?.length === 0) { 
-      <app-empty-table />
-     }
+    @if (!table.checks.length) {
+    <app-empty-table />
+    } @else { @for (check of table.checks; track $index) {
+    <app-check [products]="check.items" />
+    <div class="fixed bottom-4 right-4 items-center flex gap-2">
+      <prt-button icon="more_vert" />
+      <prt-button icon="add" label="Adicionar" />
+    </div>
+    } }
   </div>
+  }
 </div>

@@ -3,10 +3,12 @@ import { Check, DinningTable, SalonService } from '../../../../core/services/sal
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EmptyTableComponent } from "../empty-table/empty-table.component";
+import { CheckComponent } from '../check/check.component';
+import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
 
 @Component({
   selector: 'app-table-detail',
-  imports: [CommonModule, EmptyTableComponent],
+  imports: [CommonModule, EmptyTableComponent, CheckComponent, PrtButton],
   templateUrl: './table-detail.component.html'
 })
 export class TableDetailComponent {

@@ -1,0 +1,17 @@
+<div class="flex flex-col gap-2">
+  <div class="flex flex-col w-full">
+    @for (prod of products(); track $index) {
+    <button class="flex justify-between px-2 py-1 hover:bg-dark rounded-lg">
+      <span>
+        {{ prod.product.name }}
+      </span>
+      <span>
+        {{ prod.quantity }}
+      </span>
+    </button>
+    }
+  </div>
+  <div class="bg-dark p-2 rounded-lg w-fit ml-auto">
+    <span>Total: $500</span>
+  </div>
+</div>

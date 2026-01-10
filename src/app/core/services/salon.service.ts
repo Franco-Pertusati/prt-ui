@@ -103,8 +103,7 @@ export class SalonService {
       { id: 1, name: 'Sin pedido', color: '#9CA3AF' },
       { id: 2, name: 'Entrada', color: '#ff595e' },
       { id: 3, name: 'Plato principal', color: '#ffca3a' },
-      { id: 4, name: 'Postre', color: '#1982c4' },
-      { id: 5, name: 'Esperando cuenta', color: '#6a4c93' },
+      { id: 4, name: 'Postre', color: '#8ac926' },
     ];
 
     // 12 tables con datos variados
@@ -143,6 +142,13 @@ export class SalonService {
                 addedAt: new Date(now.getTime() - 40 * 60000),
                 subtotal: this.products[20].price * 2
               }
+            ]
+          },
+          {
+            id: 22,
+            name: 'Cuenta 2',
+            items: [
+              
             ]
           }
         ]
@@ -194,7 +200,7 @@ export class SalonService {
       {
         id: 4,
         name: '4',
-        step: this.steps[4],
+        step: this.steps[3],
         openedAt: new Date(now.getTime() - 90 * 60000), // Abierta hace 1.5 horas
         closedAt: null,
         checks: [
@@ -426,7 +432,7 @@ export class SalonService {
       {
         id: 12,
         name: '12',
-        step: this.steps[4],
+        step: this.steps[3],
         openedAt: new Date(now.getTime() - 80 * 60000),
         closedAt: null,
         checks: [
@@ -617,7 +623,7 @@ export class SalonService {
   requestBill(tableId: number): void {
     const table = this.dinningTables.find(t => t.id === tableId);
     if (table) {
-      table.step = this.steps[4];
+      table.step = this.steps[3];
     }
   }
 
