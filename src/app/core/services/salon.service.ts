@@ -72,26 +72,26 @@ export class SalonService {
       { id: 2, name: 'Carpaccio', price: 12.00, category: this.categories[0] },
       { id: 3, name: 'Caprese', price: 9.50, category: this.categories[0] },
       { id: 4, name: 'Arancini', price: 10.00, category: this.categories[0] },
-      
+
       { id: 5, name: 'Spaghetti Carbonara', price: 14.50, category: this.categories[1] },
       { id: 6, name: 'Fettuccine Alfredo', price: 13.00, category: this.categories[1] },
       { id: 7, name: 'Lasagna', price: 15.50, category: this.categories[1] },
       { id: 8, name: 'Ravioli', price: 16.00, category: this.categories[1] },
-      
+
       { id: 9, name: 'Pizza Margherita', price: 12.00, category: this.categories[2] },
       { id: 10, name: 'Pizza Quattro Formaggi', price: 14.50, category: this.categories[2] },
       { id: 11, name: 'Pizza Pepperoni', price: 13.50, category: this.categories[2] },
       { id: 12, name: 'Pizza Prosciutto', price: 15.00, category: this.categories[2] },
-      
+
       { id: 13, name: 'Ossobuco', price: 22.00, category: this.categories[3] },
       { id: 14, name: 'Saltimbocca', price: 20.00, category: this.categories[3] },
       { id: 15, name: 'Bistecca Fiorentina', price: 28.00, category: this.categories[3] },
-      
+
       { id: 16, name: 'Tiramisu', price: 7.50, category: this.categories[4] },
       { id: 17, name: 'Panna Cotta', price: 6.50, category: this.categories[4] },
       { id: 18, name: 'Cannoli', price: 7.00, category: this.categories[4] },
       { id: 19, name: 'Gelato', price: 5.50, category: this.categories[4] },
-      
+
       { id: 20, name: 'Agua Mineral', price: 2.50, category: this.categories[5] },
       { id: 21, name: 'Vino Tinto', price: 18.00, category: this.categories[5] },
       { id: 22, name: 'Vino Blanco', price: 16.00, category: this.categories[5] },
@@ -108,7 +108,7 @@ export class SalonService {
 
     // 12 tables con datos variados
     const now = new Date();
-    
+
     this.dinningTables = [
       {
         id: 1,
@@ -148,7 +148,7 @@ export class SalonService {
             id: 22,
             name: 'Cuenta 2',
             items: [
-              
+
             ]
           }
         ]
@@ -510,7 +510,7 @@ export class SalonService {
       const check = table.checks.find(c => c.id === checkId);
       if (check) {
         // Buscar si el producto ya existe con las mismas notas
-        const existing = check.items.find(item => 
+        const existing = check.items.find(item =>
           item.product.id === product.id && item.notes === notes
         );
 
@@ -526,7 +526,7 @@ export class SalonService {
             subtotal: product.price * quantity
           });
         }
-        
+
         this.updateTableStep(tableId, product.category);
       }
     }
@@ -539,14 +539,14 @@ export class SalonService {
       const check = table.checks.find(c => c.id === checkId);
       if (check && itemIndex >= 0 && itemIndex < check.items.length) {
         const item = check.items[itemIndex];
-        
+
         if (item.quantity <= quantityToRemove) {
           check.items.splice(itemIndex, 1);
         } else {
           item.quantity -= quantityToRemove;
           item.subtotal = item.product.price * item.quantity;
         }
-        
+
         if (check.items.length === 0) {
           table.step = this.steps[0];
         }
@@ -638,5 +638,11 @@ export class SalonService {
         items: []
       });
     }
+  }
+
+  getProductMinutesSinceAdded(addedAt: Date): number {
+    const now = new Date();
+    const diffInMs = now.getTime() - addedAt.getTime();
+    return Math.floor(diffInMs / 60000);
   }
 }

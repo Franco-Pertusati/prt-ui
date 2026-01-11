@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto bg-neutral">
+<div class="max-w-7xl mx-auto">
   @if (table) {
   <h2 class="font-bold text-center my-2 text-xl px-2">
     Mesa: {{ table.name }}
@@ -7,7 +7,7 @@
     @if (!table.checks.length) {
     <app-empty-table />
     } @else { @for (check of table.checks; track $index) {
-    <app-check [products]="check.items" />
+    <app-check [check]="check" />
     <div class="fixed bottom-4 right-4 items-center flex gap-2">
       <prt-button icon="more_vert" />
       <prt-button icon="add" label="Adicionar" />
