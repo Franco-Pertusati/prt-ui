@@ -1,0 +1,7 @@
+<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 p-2 pt-0">
+  @for (img of images; track $index) {
+  <app-item-container [classList]="'w-fit'">
+    <img [src]="img" alt="" class="rounded-xl" />
+  </app-item-container>
+  }
+</div>
