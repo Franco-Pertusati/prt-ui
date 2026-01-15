@@ -5,6 +5,7 @@ import { SalonComponent } from './modules/salon/salon.component';
 import { salonRoutes } from './modules/salon/salon.routes';
 import { CachaComponent } from './modules/cacha/cacha.component';
 import { cachaRoutes } from './modules/cacha/cacha.routes';
+import { HomeComponent } from './modules/home/home.component';
 
 export const routes: Routes = [
   {
@@ -23,8 +24,12 @@ export const routes: Routes = [
     children: cachaRoutes
   },
   {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
     path: '',
-    redirectTo: 'docs',
+    redirectTo: 'home',
     pathMatch: 'full'
   }
 ];

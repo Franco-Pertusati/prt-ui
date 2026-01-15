@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ItemContainerComponent } from "../../../../prt-ui/item-container/item-container.component";
+import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
+import { DialogService } from '../../../../core/services/dialog.service';
+import { ContactDialogComponent } from '../../components/contact-dialog/contact-dialog.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ItemContainerComponent],
+  imports: [ItemContainerComponent, PrtButton],
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
+  dialog = inject(DialogService)
+
+  openContactDialog() {
+    this.dialog.openDialog(ContactDialogComponent)
+  }
+
   images = [
     "https://picsum.photos/seed/1/800/600",
     "https://picsum.photos/seed/2/800/600",
