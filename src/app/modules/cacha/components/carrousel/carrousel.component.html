@@ -1,15 +1,19 @@
 @if (isActive()) {
 <div
-  class="fixed top-0 left-0 w-screen h-screen bg-black/40 backdrop-blur-lg gap-2 flex flex-col items-center"
+  class="fixed top-0 left-0 w-screen h-screen gap-2 flex flex-col items-center"
 >
-  <div class="fixed top-2 right-2 flex flex-col gap-1 z-10">
-    <prt-button variant="default" icon="close" />
+  <div
+    class="bg-black/40 backdrop-blur-lg absolute top-0 left-0 w-full h-full"
+    (click)="closeCarrousel()"
+  ></div>
+  <div class="fixed top-2 right-2 flex flex-col gap-1">
+    <prt-button variant="default" icon="close" (btnClick)="closeCarrousel()" />
     <app-theme-toggle-btn variant="default" />
   </div>
   <div class="grow max-w-7xl grid place-items-center relative">
     <img [src]="selectedImg" alt="" class="w-full" />
   </div>
-  <div class="flex gap-2">
+  <div class="flex gap-2 z-20">
     <prt-button
       icon="chevron_left"
       [variant]="'default'"

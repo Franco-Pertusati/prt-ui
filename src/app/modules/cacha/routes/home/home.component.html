@@ -31,10 +31,19 @@
       </div>
     </div>
   </div>
-  @for (img of images; track $index) {
-  <app-item-container [classList]="'w-fit'">
-    <img [src]="img" alt="" class="rounded-xl" />
-  </app-item-container>
-  }
-  <app-carrousel [images]="images" />
+@for (img of images; track $index) {
+      <app-item-container [classList]="'w-fit'">
+        <img 
+          [src]="img" 
+          alt="" 
+          class="rounded-xl cursor-pointer" 
+          (click)="openCarousel($index)"
+        />
+      </app-item-container>
+    }
+    <app-carrousel 
+      [images]="images" 
+      [(isActive)]="carouselActive"
+      [initialIndex]="selectedImageIndex"
+    />
 </div>

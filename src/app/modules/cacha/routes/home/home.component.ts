@@ -12,11 +12,6 @@ import { CarrouselComponent } from "../../components/carrousel/carrousel.compone
 })
 export class HomeComponent {
   dialog = inject(DialogService)
-
-  openContactDialog() {
-    this.dialog.openDialog(ContactDialogComponent)
-  }
-
   images = [
     "https://picsum.photos/seed/1/800/600",
     "https://picsum.photos/seed/2/800/600",
@@ -33,4 +28,15 @@ export class HomeComponent {
     "https://picsum.photos/seed/13/800/600",
     "https://picsum.photos/seed/14/800/600"
   ]
+  carouselActive = false;
+  selectedImageIndex = 0;
+
+  openContactDialog() {
+    this.dialog.openDialog(ContactDialogComponent)
+  }
+
+  openCarousel(index: number) {
+    this.selectedImageIndex = index;
+    this.carouselActive = true;
+  }
 }

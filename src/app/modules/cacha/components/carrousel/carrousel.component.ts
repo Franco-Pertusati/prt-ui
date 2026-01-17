@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, input, effect, ElementRef, viewChildren } from '@angular/core';
+import { Component, input, effect, ElementRef, viewChildren, model } from '@angular/core';
 import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
 import { ThemeToggleBtnComponent } from "../../../../prt-ui/theme-toggle-btn/theme-toggle-btn.component";
 
@@ -12,14 +12,20 @@ export class CarrouselComponent {
   images = input<string[]>([]);
   selectedImg: string = '';
   imageElements = viewChildren<ElementRef>('imgElement');
-  isActive = input<boolean>(false)
+  isActive = model<boolean>(false);
+  initialIndex = input<number>(0);
   
   constructor() {
-    // Seleccionar la primera imagen al iniciar
     effect(() => {
       const imgs = this.images();
-      if (imgs && imgs.length > 0 && !this.selectedImg) {
-        this.selectedImg = imgs[0];
+      const index = this.initialIndex();
+      
+      if (imgs && imgs.length > 0) {
+        this.selectedImg = imgs[index] || imgs[0];
+        
+        setTimeout(() => {
+          this.scrollToImage(index);
+        }, 100);
       }
     });
   }
@@ -37,7 +43,6 @@ export class CarrouselComponent {
   navigatePrev() {
     const imgs = this.images();
     const currentIndex = imgs.indexOf(this.selectedImg);
-    
     if (currentIndex > 0) {
       const prevImg = imgs[currentIndex - 1];
       this.selectedImg = prevImg;
@@ -48,12 +53,15 @@ export class CarrouselComponent {
   navigateNext() {
     const imgs = this.images();
     const currentIndex = imgs.indexOf(this.selectedImg);
-    
     if (currentIndex < imgs.length - 1) {
       const nextImg = imgs[currentIndex + 1];
       this.selectedImg = nextImg;
       this.scrollToImage(currentIndex + 1);
     }
+  }
+  
+  closeCarrousel() {
+    this.isActive.set(false);
   }
   
   private scrollToImage(index: number) {
