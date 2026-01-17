@@ -4,10 +4,11 @@ import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
 import { DialogService } from '../../../../core/services/dialog.service';
 import { ContactDialogComponent } from '../../components/contact-dialog/contact-dialog.component';
 import { CarrouselComponent } from "../../components/carrousel/carrousel.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-home',
-  imports: [ItemContainerComponent, PrtButton, CarrouselComponent],
+  imports: [ItemContainerComponent, PrtButton, CarrouselComponent, FooterComponent],
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
@@ -26,7 +27,7 @@ export class HomeComponent {
     "https://picsum.photos/seed/11/800/600",
     "https://picsum.photos/seed/12/800/600",
     "https://picsum.photos/seed/13/800/600",
-    "https://picsum.photos/seed/14/800/600"
+    "https://picsum.photos/seed/14/800/600",
   ]
   carouselActive = false;
   selectedImageIndex = 0;
