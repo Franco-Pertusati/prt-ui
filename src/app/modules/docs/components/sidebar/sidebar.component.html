@@ -1,4 +1,4 @@
-<div class="py-4 px-8 w-72 bg-neutral h-full flex flex-col">
+<div class="py-4 px-8 w-72 bg-dark h-full flex flex-col">
   <div class="flex justify-between mb-12">
     <h1 class="font-bold text-2xl">PRTUI</h1>
     <app-theme-toggle-btn [variant]="'ghost'" />
@@ -8,7 +8,7 @@
     <prt-button
       [label]="b.label"
       (btnClick)="navigateTo(b.route)"
-      [variant]="isActive(b.route)? 'default' : 'ghost'"
+      [variant]="isActive(b.route)? 'secondary' : 'ghost'"
       [classList]="'w-full justify-start'"
     />
     }

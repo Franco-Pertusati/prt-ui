@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { Toast } from '../../../core/interfaces/toast';
 
 @Component({
@@ -18,8 +18,8 @@ export class ToastComponent {
 
   baseClasses = `p-3 rounded-xl border-border border z-50`;
 
-  get classes(): string {
+  classes = computed(() => {
     const variant = this.styleMap[this.variant()] ?? '';
     return `${this.baseClasses} ${variant}`;
-  }
+  })
 }

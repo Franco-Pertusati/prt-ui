@@ -16,10 +16,6 @@ export class SidebarComponent {
       route: 'button'
     },
     {
-      label: 'Button Group',
-      route: 'button-group'
-    },
-    {
       label: 'Check-box',
       route: 'check-box'
     },
@@ -38,14 +34,6 @@ export class SidebarComponent {
     {
       label: 'Key Binding',
       route: 'kbd'
-    },
-    {
-      label: 'Tabs (router)',
-      route: 'router-tabs'
-    },
-    {
-      label: 'Tabs (no router)',
-      route: 'tabs'
     },
   ]
 

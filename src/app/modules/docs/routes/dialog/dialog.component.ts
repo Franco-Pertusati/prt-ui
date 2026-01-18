@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
 import { DialogService } from '../../../../core/services/dialog.service';
-import { ArticleContainerComponent } from '../../components/article-container/article-container.component';
+import { DialogTestComponent } from '../../components/dialog-test/dialog-test.component';
 
 @Component({
   selector: 'app-dialog',
@@ -12,6 +12,6 @@ export class DialogComponent {
   dialog = inject(DialogService)
 
   openDialog() {
-    this.dialog.openDialog(ArticleContainerComponent)
+    this.dialog.openDialog(DialogTestComponent)
   }
 }
