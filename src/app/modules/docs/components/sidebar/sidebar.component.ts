@@ -16,11 +16,19 @@ export class SidebarComponent {
       route: 'button'
     },
     {
+      label: 'Button Promise',
+      route: ''
+    },
+    {
       label: 'Check-box',
       route: 'check-box'
     },
     {
       label: 'Dialog',
+      route: 'dialog'
+    },
+    {
+      label: 'Confirm Dialog',
       route: 'dialog'
     },
     {
@@ -34,6 +42,34 @@ export class SidebarComponent {
     {
       label: 'Key Binding',
       route: 'kbd'
+    },
+    {
+      label: 'Spinner',
+      route: 'spinner'
+    },
+    {
+      label: 'Skeleton',
+      route: ''
+    },
+    {
+      label: 'Tooltip',
+      route: ''
+    },
+    {
+      label: 'Drawer',
+      route: ''
+    },
+    {
+      label: 'Avatar',
+      route: ''
+    },
+    {
+      label: 'Breadcrumb',
+      route: ''
+    },
+    {
+      label: 'Counter',
+      route: ''
     },
   ]
 

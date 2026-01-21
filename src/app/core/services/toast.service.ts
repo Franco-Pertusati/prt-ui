@@ -15,6 +15,16 @@ export class ToastService {
     }, 3000);
   }
 
+  default(title: string, message?: string) {
+    const newToast: Toast = {
+      title: title,
+      message: message || undefined,
+      icon: 'info',
+      variant: 'default'
+    }
+    this.createToast(newToast)
+  }
+
   error(title: string, message?: string) {
     const newToast: Toast = {
       title: title,

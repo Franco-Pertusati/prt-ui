@@ -11,6 +11,14 @@ export class ToastsComponent {
   toast = inject(ToastService);
 
   testDefaultToast() {
+    this.toast.default('Titutlo', 'Mensajito del toast.')
+  }
+
+  testSuccesToast() {
     this.toast.success('Titutlo', 'Mensajito del toast.')
+  }
+
+  testDangerToast() {
+    this.toast.error('Titutlo', 'Mensajito del toast.')
   }
 }

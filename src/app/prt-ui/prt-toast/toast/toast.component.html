@@ -1,8 +1,8 @@
 @let t = toast();
 
 <div [class]="classes()">
-  <div class="flex items-center gap-2">
-    @if (toast().icon) {
+  <div class="flex items-center gap-1 text-xl">
+    @if (t.icon) {
     <i class="material-symbols-rounded">
       {{ t.icon }}
     </i>
