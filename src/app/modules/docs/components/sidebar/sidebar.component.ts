@@ -20,6 +20,14 @@ export class SidebarComponent {
       route: ''
     },
     {
+      label: 'Copy Button',
+      route: 'copy-button'
+    },
+    {
+      label: 'Button Promise',
+      route: ''
+    },
+    {
       label: 'Check-box',
       route: 'check-box'
     },

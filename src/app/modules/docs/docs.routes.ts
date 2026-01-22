@@ -6,6 +6,7 @@ import { ToastsComponent } from './routes/toasts/toasts.component';
 import { KbdRouteComponent } from './routes/kbd-route/kbd-route.component';
 import { CheckBoxRouteComponent } from './routes/check-box-route/check-box-route.component';
 import { SpinnerPageComponent } from './routes/spinner-page/spinner-page.component';
+import { CopyButtonPageComponent } from './routes/copy-button-page/copy-button-page.component';
 
 export const docsRoutes: Routes = [
   { path: 'button', component: ButtonsComponent },
@@ -15,5 +16,6 @@ export const docsRoutes: Routes = [
   { path: 'kbd', component: KbdRouteComponent },
   { path: 'check-box', component: CheckBoxRouteComponent },
   { path: 'spinner', component: SpinnerPageComponent },
+  { path: 'copy-button', component: CopyButtonPageComponent },
   { path: '', redirectTo: 'button', pathMatch: 'full' }
 ];

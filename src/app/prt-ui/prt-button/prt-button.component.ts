@@ -12,9 +12,9 @@ export class PrtButton {
   classList = input<string>('');
   label = input<string>('');
   icon = input<string>('');
-  notifications = input<number>(0);
   showLabel = input<boolean>(true);
   showIcon = input<boolean>(true);
+  notifications = input<number>(0);
   
   styleMap: Record<string, string> = {
     default: 'bg-text text-dark',
