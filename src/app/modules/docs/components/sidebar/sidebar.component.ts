@@ -16,10 +16,6 @@ export class SidebarComponent {
       route: 'button'
     },
     {
-      label: 'Button Promise',
-      route: ''
-    },
-    {
       label: 'Copy Button',
       route: 'copy-button'
     },

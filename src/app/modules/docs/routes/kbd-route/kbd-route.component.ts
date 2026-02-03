@@ -7,6 +7,4 @@ import { KbdComponent } from "../../../../prt-ui/prt-kbd/kbd/kbd.component";
   imports: [KbdGroupComponent, KbdComponent],
   templateUrl: './kbd-route.component.html'
 })
-export class KbdRouteComponent {
-
-}
+export class KbdRouteComponent {}

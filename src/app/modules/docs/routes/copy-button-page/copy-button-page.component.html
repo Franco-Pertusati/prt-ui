@@ -7,6 +7,23 @@
   </div>
 
   <div class="border border-border rounded-2xl p-8 grid place-items-center">
-    <app-copy-button textToCopy="WASD" icon="content_copy" iconAfterCopy="check" />
+    <div class="flex flex-col gap-6">
+      <div class="flex gap-2 items-center">
+        <app-copy-button textToCopy="Texto a copiar" label="Copy" />
+        <app-copy-button textToCopy="Texto a copiar" label="Copy" icon="content_copy" />
+        <app-copy-button textToCopy="Texto a copiar" icon="content_copy" />
+      </div>
+
+      <div class="flex gap-2 items-center">
+        <app-copy-button textToCopy="Hola Mundo" label="Copy" labelAfterCopy="Copiado" iconAfterCopy="check" />
+        <app-copy-button textToCopy="Hola Mundo" icon="content_copy" iconAfterCopy="check" />
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="text-2xl mb-4">Inputs</h2>
+    <prt-table [columns]="copyButtonPropsColumns" [data]="copyButtonPropsData">
+    </prt-table>
   </div>
 </div>
