@@ -1,5 +1,14 @@
 <div class="fixed top-0 left-0 h-14 z-10 w-screen border-b border-border">
-    <nav>
-        <h2>PRTUI</h2>
-    </nav>
+  <nav class="flex items-center h-full px-2 gap-4 font-medium">
+    <ng-content />
+    <h2>PRT-UI</h2>
+    <ul class="grow flex gap-4">
+      <li>
+        <a href="/docs">Docs</a>
+      </li>
+      <li>
+        <a href="/home">Home</a>
+      </li>
+    </ul>
+  </nav>
 </div>

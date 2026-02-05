@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit, OnDestroy } from '@angular/core';
 import { Router, UrlTree } from '@angular/router';
 import { ThemeToggleBtnComponent } from '../../../../prt-ui/theme-toggle-btn/theme-toggle-btn.component';
 import { PrtButton } from '../../../../prt-ui/prt-button/prt-button.component';
@@ -9,7 +9,7 @@ import { ButtonInterface } from '../../../../core/interfaces/buttonList';
   imports: [ThemeToggleBtnComponent, PrtButton],
   templateUrl: './sidebar.component.html',
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit, OnDestroy {
   buttons: ButtonInterface[] = [
     {
       label: 'Button',
@@ -78,6 +78,24 @@ export class SidebarComponent {
   ]
   isOpen: boolean = false
   router = inject(Router)
+  private mediaQuery = window.matchMedia('(min-width: 768px)')
+
+  ngOnInit() {
+    this.checkScreenSize();
+    this.mediaQuery.addEventListener('change', () => this.checkScreenSize());
+  }
+
+  ngOnDestroy() {
+    this.mediaQuery.removeEventListener('change', () => this.checkScreenSize());
+  }
+
+  private checkScreenSize() {
+    if (this.mediaQuery.matches) {
+      this.isOpen = true;
+    } else {
+      this.isOpen = false;
+    }
+  }
 
   navigateTo(route: string) {
     this.router.navigate([`docs/${route}`]);

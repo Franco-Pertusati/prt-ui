@@ -1,12 +1,19 @@
 <div class="h-screen flex overflow-hidden bg-dark pt-14">
-  <app-nav-docs />
+  <app-nav-docs>
+    <div class="md:hidden">
+      <prt-button icon="menu" variant="ghost" (btnClick)="toggleSidebar()" />
+    </div>
+  </app-nav-docs>
   <div class="flex grow">
     <div class="h-full">
       <app-sidebar />
     </div>
 
     <div class="grow overflow-y-auto px-4">
-      <router-outlet />
+      <div class="max-w-6xl mx-auto">
+        <router-outlet />
+        <app-footer-docs />
+      </div>
     </div>
   </div>
 </div>
