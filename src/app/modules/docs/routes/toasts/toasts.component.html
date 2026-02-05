@@ -1,25 +1,35 @@
-<div class="flex flex-col gap-4">
-  <div>
+<div class="flex flex-col gap-12">
+  <div class="my-6">
     <h2 class="text-4xl font-bold">Toast</h2>
     <span class="text-muted"> A toast component for Angular. </span>
   </div>
-  <div class="border border-border rounded-2xl p-8 grid place-items-center">
-    <div class="flex gap-2">
-      <prt-button
-        label="Default"
-        (btnClick)="testDefaultToast()"
-        variant="secondary"
-      />
-      <prt-button
-        label="Succes"
-        (btnClick)="testSuccesToast()"
-        variant="secondary"
-      />
-      <prt-button
-        label="Error"
-        (btnClick)="testDangerToast()"
-        variant="secondary"
-      />
+
+  <div>
+    <h2 class="text-2xl mb-4">Preview</h2>
+    <div class="border border-border rounded-2xl p-8 grid place-items-center">
+      <div class="flex gap-2">
+        <prt-button
+          label="Default"
+          (btnClick)="testDefaultToast()"
+          variant="secondary"
+        />
+        <prt-button
+          label="Succes"
+          (btnClick)="testSuccesToast()"
+          variant="secondary"
+        />
+        <prt-button
+          label="Error"
+          (btnClick)="testDangerToast()"
+          variant="secondary"
+        />
+      </div>
     </div>
+  </div>
+
+  <div>
+    <h2 class="text-2xl mb-4">Inputs</h2>
+    <prt-table [columns]="toastPropsColumns" [data]="toastPropsData">
+    </prt-table>
   </div>
 </div>

@@ -12,7 +12,7 @@ export class ToastComponent {
   styleMap: Record<string, string> = {
     default: 'bg-light',
     succes: 'bg-succes text-white border-0',
-    error: 'bg-danger/50 text-white',
+    error: 'bg-danger text-white',
     warning: 'bg-warning text-black',
   };
 

@@ -1,23 +1,35 @@
-<div class="flex flex-col gap-4">
-  <div>
+<div class="flex flex-col gap-12">
+  <div class="my-6">
     <h2 class="text-4xl font-bold">Card</h2>
     <span class="text-muted">
       Displays a card with header, content, and footer.
     </span>
   </div>
-  <div class="flex gap-2">
-    <app-card-container>
-      <app-card-header>
-        <h1 class="text-xl">Card header</h1>
-        <span class="text-muted">Un texto secundario</span>
-      </app-card-header>
-      <app-card-body
-        >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta
-        necessitatibus aliquam cumque! Modi itaque nemo rerum, ut quis, eum,
-        laboriosam cupiditate quia non quam corrupti placeat nostrum vero earum
-        minima?</app-card-body
-      >
-      <app-card-footer>a</app-card-footer>
-    </app-card-container>
+
+  <div>
+    <h2 class="text-2xl mb-4">Preview</h2>
+    <div class="border border-border rounded-2xl p-8 grid place-items-center">
+      <div class="flex gap-2">
+        <app-card-container>
+          <app-card-header>
+            <h1 class="text-xl">Card header</h1>
+            <span class="text-muted">Un texto secundario</span>
+          </app-card-header>
+          <app-card-body>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta
+            necessitatibus aliquam cumque! Modi itaque nemo rerum, ut quis, eum,
+            laboriosam cupiditate quia non quam corrupti placeat nostrum vero earum
+            minima?
+          </app-card-body>
+          <app-card-footer>a</app-card-footer>
+        </app-card-container>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="text-2xl mb-4">Inputs</h2>
+    <prt-table [columns]="cardPropsColumns" [data]="cardPropsData">
+    </prt-table>
   </div>
 </div>

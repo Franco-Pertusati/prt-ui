@@ -76,7 +76,7 @@ export class SidebarComponent {
       route: ''
     },
   ]
-
+  isOpen: boolean = false
   router = inject(Router)
 
   navigateTo(route: string) {
@@ -92,5 +92,9 @@ export class SidebarComponent {
       fragment: 'ignored',
       matrixParams: 'ignored',
     });
+  }
+
+  toggleSidebar() {
+    this.isOpen = !this.isOpen
   }
 }

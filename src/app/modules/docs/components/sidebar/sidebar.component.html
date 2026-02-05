@@ -1,16 +1,18 @@
-<div class="py-4 px-8 w-72 bg-dark h-full flex flex-col">
-  <div class="flex justify-between mb-12">
-    <h1 class="font-bold text-2xl">PRTUI</h1>
-    <app-theme-toggle-btn [variant]="'ghost'" />
-  </div>
-  <div class="flex flex-col gap-2">
+<div
+  class="p-4 w-72 bg-dark/80 backdrop-blur-md h-full flex flex-col fixed md:relative border-r border-border"
+>
+  <div class="flex flex-col gap-1 mt-6">
     @for (b of buttons; track $index) {
-    <prt-button
-      [label]="b.label"
-      (btnClick)="navigateTo(b.route)"
-      [variant]="isActive(b.route)? 'secondary' : 'ghost'"
-      [classList]="'w-full justify-start rounded-full'"
-    />
+      <prt-button
+        [label]="b.label"
+        (btnClick)="navigateTo(b.route)"
+        [variant]="isActive(b.route) ? 'secondary' : 'ghost'"
+        [classList]="'w-full justify-start rounded-full text-sm'"
+      />
     }
+  </div>
+
+  <div class="flex justify-between mt-auto">
+    <app-theme-toggle-btn [variant]="'ghost'" />
   </div>
 </div>
