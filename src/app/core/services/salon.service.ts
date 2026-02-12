@@ -7,6 +7,13 @@ export interface Product {
   category: Category
 }
 
+export interface courtesyProduct {
+  id: number,
+  price: number,
+  name: string
+  category: Category
+}
+
 export interface Category {
   id: number,
   name: string
@@ -63,7 +70,8 @@ export class SalonService {
       { id: 3, name: 'Pizzas' },
       { id: 4, name: 'Carnes' },
       { id: 5, name: 'Postres' },
-      { id: 6, name: 'Bebidas' }
+      { id: 6, name: 'Bebidas' },
+      { id: 7, name: 'Invitacion' }
     ];
 
     // Productos de restaurante italiano
@@ -95,7 +103,14 @@ export class SalonService {
       { id: 20, name: 'Agua Mineral', price: 2.50, category: this.categories[5] },
       { id: 21, name: 'Vino Tinto', price: 18.00, category: this.categories[5] },
       { id: 22, name: 'Vino Blanco', price: 16.00, category: this.categories[5] },
-      { id: 23, name: 'Espresso', price: 3.00, category: this.categories[5] }
+      { id: 23, name: 'Espresso', price: 3.00, category: this.categories[5] },
+
+      { id: 24, name: 'Champagne Invitacion', price: 0, category: this.categories[6] },
+      { id: 25, name: 'Aperol Spritz Invitacion', price: 0, category: this.categories[6] },
+      { id: 26, name: 'Panera Libertador', price: 0, category: this.categories[6] },
+      { id: 27, name: 'Paninos Libertador', price: 0, category: this.categories[6] },
+      { id: 28, name: 'Paninos Libertador', price: 0, category: this.categories[6] },
+      { id: 29, name: 'Paninos Libertador', price: 0, category: this.categories[6] },
     ];
 
     // Steps
@@ -148,7 +163,27 @@ export class SalonService {
             id: 22,
             name: 'Cuenta 2',
             items: [
-
+              {
+                product: this.products[1],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 55 * 60000),
+                subtotal: this.products[1].price
+              },
+              {
+                product: this.products[8],
+                quantity: 2,
+                notes: 'Extra queso',
+                addedAt: new Date(now.getTime() - 35 * 60000),
+                subtotal: this.products[8].price * 2
+              },
+              {
+                product: this.products[15],
+                quantity: 1,
+                notes: '',
+                addedAt: new Date(now.getTime() - 5 * 60000),
+                subtotal: this.products[15].price
+              }
             ]
           }
         ]

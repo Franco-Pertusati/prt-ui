@@ -11,7 +11,7 @@ import { MinutesToTimePipe } from '../../../../core/pipes/minutes-to-time.pipe';
 })
 export class CheckComponent {
   check = input.required<Check>()
-
+  showAddBtn = input.required<boolean>()
   salonService = inject(SalonService)
 
   calculateTotalCheck() {
