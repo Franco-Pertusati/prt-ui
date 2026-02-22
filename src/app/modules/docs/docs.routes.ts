@@ -7,10 +7,12 @@ import { KbdRouteComponent } from './routes/kbd-route/kbd-route.component';
 import { CheckBoxRouteComponent } from './routes/check-box-route/check-box-route.component';
 import { SpinnerPageComponent } from './routes/spinner-page/spinner-page.component';
 import { CopyButtonPageComponent } from './routes/copy-button-page/copy-button-page.component';
+import { ConfirmDialogComponent } from './routes/confirm-dialog/confirm-dialog.component';
 
 export const docsRoutes: Routes = [
   { path: 'button', component: ButtonsComponent },
   { path: 'dialog', component: DialogComponent },
+  { path: 'confirm-dialog', component: ConfirmDialogComponent },
   { path: 'toast', component: ToastsComponent },
   { path: 'card', component: CardComponent },
   { path: 'kbd', component: KbdRouteComponent },

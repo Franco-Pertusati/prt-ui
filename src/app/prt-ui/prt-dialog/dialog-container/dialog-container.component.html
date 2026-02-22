@@ -1,7 +1,7 @@
 <div>
   @if (dialog.isDialogOpen()) {
-  <app-dialog>
-    <ng-container *ngComponentOutlet="dialog.componentToShow()"></ng-container>
-  </app-dialog>
+    <app-dialog>
+      <ng-container *ngComponentOutlet="dialog.dialogConfig()!.component" />
+    </app-dialog>
   }
 </div>

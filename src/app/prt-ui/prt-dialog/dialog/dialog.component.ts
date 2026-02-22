@@ -12,7 +12,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   @ViewChild('closeButton', { read: ElementRef }) closeButtonRef!: ElementRef;
 
   dialogService = inject(DialogService);
-  private dialogElement!: HTMLElement;
   private handleKeyDown!: (e: KeyboardEvent) => void;
 
   stopPropagation(event: MouseEvent) {
@@ -24,7 +23,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // Esperar al siguiente ciclo de renderizado para asegurar que el DOM esté listo
     setTimeout(() => {
       this.focusCloseButton();
       this.setupFocusTrap();
@@ -32,7 +30,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Limpiar el event listener cuando se destruya el componente
     const dialogContent = document.querySelector('app-dialog > div') as HTMLElement | null;
     if (dialogContent && this.handleKeyDown) {
       dialogContent.removeEventListener('keydown', this.handleKeyDown);
@@ -40,7 +37,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   }
 
   private focusCloseButton() {
-    // Buscar el botón nativo dentro del componente PrtButton
     const buttonElement = this.closeButtonRef?.nativeElement?.querySelector('button');
     if (buttonElement) {
       buttonElement.focus();
@@ -68,7 +64,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
       const lastElement = focusableElements[focusableElements.length - 1];
       const activeElement = document.activeElement as HTMLElement;
 
-      // Si el foco está fuera del diálogo, redirigirlo dentro
       if (!dialogContent.contains(activeElement)) {
         e.preventDefault();
         if (e.shiftKey) {
@@ -79,7 +74,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
         return;
       }
 
-      // Manejo normal del Tab dentro del diálogo
       if (e.shiftKey) {
         if (activeElement === firstElement) {
           e.preventDefault();
@@ -93,7 +87,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
       }
     };
 
-    // Escuchar en document para capturar Tab desde cualquier lugar
     document.addEventListener('keydown', this.handleKeyDown);
   }
 }

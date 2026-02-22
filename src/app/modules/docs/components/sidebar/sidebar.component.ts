@@ -33,7 +33,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     },
     {
       label: 'Confirm Dialog',
-      route: 'dialog'
+      route: 'confirm-dialog'
     },
     {
       label: 'Toast',
