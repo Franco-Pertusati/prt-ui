@@ -7,7 +7,7 @@
     (click)="stopPropagation($event)"
   >
     <ng-content />
-    @if (dialogService.showCloseButton) {
+    @if (dialogService.dialogConfig()?.showCloseButton) {
       <div class="absolute -top-10 right-0 bg-dark rounded-xl">
         <prt-button
           #closeButton

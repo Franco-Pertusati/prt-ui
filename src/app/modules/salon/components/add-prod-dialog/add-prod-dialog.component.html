@@ -1,0 +1,21 @@
+<div class="p-1 flex flex-col overflow-hidden max-w-sm">
+  <div
+    class="flex flex-col gap-1 mb-2 rounded-xl overflow-scroll max-h-96 relative"
+  >
+    @for (prod of prods; track $index) {
+      <div class="p-3 bg-neutral rounded-xl flex items-center">
+        <span class="grow">
+          {{ prod.name }}
+        </span>
+        <app-counter [minValue]="0" />
+      </div>
+    }
+  </div>
+  <div class="overflow-x-scroll mb-4">
+    <prt-radio [options]="options" containerClasses="flex-no-wrap gap-1" />
+  </div>
+  <div class="w-full flex flex-row-reverse">
+    <prt-button label="Comandar" icon="check_circle" />
+    <prt-button label="Cancelar" variant="ghost" />
+  </div>
+</div>

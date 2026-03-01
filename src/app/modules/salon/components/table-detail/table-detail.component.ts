@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Check, DinningTable, SalonService } from '../../../../core/services/salon.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EmptyTableComponent } from "../empty-table/empty-table.component";
 import { CheckComponent } from '../check/check.component';
 import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
+import { DialogService } from '../../../../core/services/dialog.service';
+import { AddProdDialogComponent } from '../add-prod-dialog/add-prod-dialog.component';
 
 @Component({
   selector: 'app-table-detail',
@@ -12,14 +14,13 @@ import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
   templateUrl: './table-detail.component.html'
 })
 export class TableDetailComponent {
+  salonService = inject(SalonService)
+  router = inject(Router)
+  route = inject(ActivatedRoute)
+  dialog = inject(DialogService)
+
   table: DinningTable | undefined;
   tableId: number = 0;
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private salonService: SalonService
-  ) { }
 
   ngOnInit(): void {
     this.tableId = Number(this.route.snapshot.paramMap.get('id'));
@@ -50,5 +51,9 @@ export class TableDetailComponent {
 
   goBack(): void {
     this.router.navigate(['/salon']);
+  }
+
+  openProdsDialogs() {
+    this.dialog.openDialog(AddProdDialogComponent)
   }
 }

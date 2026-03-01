@@ -1,6 +1,6 @@
 <div class="max-w-7xl mx-auto">
   @if (table) {
-    <h2 class="font-bold text-center my-2 text-xl px-2">
+    <h2 class="font-bold text-center my-4 text-xl px-2">
       Mesa: {{ table.name }}
     </h2>
     <div class="flex flex-col w-full gap-2">
@@ -15,7 +15,7 @@
           <div class="fixed bottom-4 right-4 items-center flex gap-2">
             <prt-button icon="more_vert" />
             @if (table.checks.length < 2) {
-              <prt-button icon="add" label="Adicionar" />
+              <prt-button icon="add" label="Adicionar" (btnClick)="openProdsDialogs()" />
             }
           </div>
         }

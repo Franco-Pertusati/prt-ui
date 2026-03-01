@@ -30,7 +30,7 @@ export class PrtRadioComponent {
   selectionChange = output<string>();
 
   containerClasses = computed(() => {
-    return 'inline-flex gap-2 flex-wrap';
+    return 'inline-flex';
   });
 
   getOptionClasses(option: RadioOption) {
