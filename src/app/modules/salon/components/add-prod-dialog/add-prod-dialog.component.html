@@ -1,4 +1,4 @@
-<div class="p-1 flex flex-col overflow-hidden max-w-sm">
+<div class="p-1 flex flex-col overflow-hidden max-w-sm relative">
   <div
     class="flex flex-col gap-1 mb-2 rounded-xl overflow-scroll max-h-96 relative"
   >
@@ -11,11 +11,10 @@
       </div>
     }
   </div>
-  <div class="overflow-x-scroll mb-4">
+  <div class="overflow-x-scroll">
     <prt-radio [options]="options" containerClasses="flex-no-wrap gap-1" />
   </div>
-  <div class="w-full flex flex-row-reverse">
-    <prt-button label="Comandar" icon="check_circle" />
-    <prt-button label="Cancelar" variant="ghost" />
+  <div class="fixed bottom-4 right-4">
+    <prt-button label="Comanda" classList="p-4 text-xl" />
   </div>
 </div>

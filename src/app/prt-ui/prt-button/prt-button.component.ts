@@ -28,7 +28,9 @@ export class PrtButton {
 
   classes = computed(() => {
     const variant = this.styleMap[this.variant()] ?? '';
-    const padding = !this.showLabel() || !this.label() ? 'p-1.5' : 'px-3 py-1.5';
+    const defaultPadding = !this.showLabel() || !this.label() ? 'p-1.5' : 'px-3 py-1.5';
+    const hasPaddingClass = /\b(p|px|py|pt|pb|pl|pr)-/.test(this.classList());
+    const padding = hasPaddingClass ? '' : defaultPadding;
     return `${this.baseClasses} ${variant} ${padding} ${this.classList()}`;
   });
 }
