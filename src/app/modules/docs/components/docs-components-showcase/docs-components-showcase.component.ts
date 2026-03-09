@@ -5,10 +5,11 @@ import { KbdComponent } from "../../../../prt-ui/prt-kbd/kbd/kbd.component";
 import { KbdGroupComponent } from "../../../../prt-ui/prt-kbd/kbd-group/kbd-group.component";
 import { PrtRadioComponent, RadioOption } from "../../../../prt-ui/prt-radio/prt-radio.component";
 import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
+import { SpinnerComponent } from "../../../../prt-ui/spinner/spinner.component";
 
 @Component({
   selector: 'app-docs-components-showcase',
-  imports: [ThemeToggleBtnComponent, CounterComponent, KbdComponent, KbdGroupComponent, PrtRadioComponent, PrtButton],
+  imports: [ThemeToggleBtnComponent, CounterComponent, KbdComponent, KbdGroupComponent, PrtRadioComponent, PrtButton, SpinnerComponent],
   templateUrl: './docs-components-showcase.component.html'
 })
 export class DocsComponentsShowcaseComponent {
