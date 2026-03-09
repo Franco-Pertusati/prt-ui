@@ -29,9 +29,7 @@ export class PrtRadioComponent {
 
   selectionChange = output<string>();
 
-  containerClasses = computed(() => {
-    return 'inline-flex';
-  });
+  containerClasses = input<string>('inline-flex');
 
   getOptionClasses(option: RadioOption) {
     const isSelected = this.selectedValue() === option.value;
