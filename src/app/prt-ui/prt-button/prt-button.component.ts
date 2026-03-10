@@ -16,6 +16,19 @@ export class PrtButton {
   showIcon = input<boolean>(true);
   notifications = input<number>(0);
 
+  // Tooltip
+  tooltip = input<string>('');
+  tooltipPosition = input<'top' | 'bottom' | 'left' | 'right'>('top');
+
+  // Hover icon
+  hoverIcon = input<string>('');
+  hoverIconPosition = input<'left' | 'right'>('right');
+
+  // Accessibility
+  ariaLabel = input<string>('');
+  ariaDescribedBy = input<string>('');
+  disabled = input<boolean>(false);
+
   styleMap: Record<string, string> = {
     default: 'bg-text text-dark',
     outlined: 'border border-border hover:bg-neutral',
@@ -31,6 +44,22 @@ export class PrtButton {
     const defaultPadding = !this.showLabel() || !this.label() ? 'p-1.5' : 'px-3 py-1.5';
     const hasPaddingClass = /\b(p|px|py|pt|pb|pl|pr)-/.test(this.classList());
     const padding = hasPaddingClass ? '' : defaultPadding;
-    return `${this.baseClasses} ${variant} ${padding} ${this.classList()}`;
+    const disabledClasses = this.disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
+    return `${this.baseClasses} ${variant} ${padding} ${this.classList()} ${disabledClasses}`.trim();
+  });
+
+  tooltipClasses = computed(() => {
+    const positionMap: Record<string, string> = {
+      top: 'tooltip-top',
+      bottom: 'tooltip-bottom',
+      left: 'tooltip-left',
+      right: 'tooltip-right',
+    };
+    return `prt-tooltip bg-light shadow border border-border ${positionMap[this.tooltipPosition()] ?? 'tooltip-top'}`;
+  });
+
+  /** Computed aria-label: falls back to label() if ariaLabel() is not provided */
+  computedAriaLabel = computed(() => {
+    return this.ariaLabel() || this.label() || undefined;
   });
 }

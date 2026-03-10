@@ -12,11 +12,13 @@
     <i class="material-symbols-rounded">info</i>
   </div>
   <div class="absolute -right-10 top-1/2">
-    <prt-radio
-      [options]="radioOptions"
-      containerClasses="pb-1.5 rounded-2xl flex gap-1 p-1 border-border border"
-      selectedValue="1"
-    />
+    <app-item-container>
+      <prt-radio
+        [options]="radioOptions"
+        containerClasses="rounded-2xl flex gap-1 p-1"
+        selectedValue="1"
+      />
+    </app-item-container>
   </div>
   <div
     class="flex gap-1 items-center p-1 bg-neutral rounded-2xl w-fit absolute -bottom-2 -right-4"
@@ -30,12 +32,14 @@
   <div class="absolute left-4 top-1/3">
     <app-theme-toggle-btn variant="secondary" />
   </div>
+  <app-item-container>
+    <div class="h-32 w-32 mx-auto grid rounded-2xl place-items-center">
+      <span class="text-2xl font-bold">PRTUI</span>
+    </div>
+  </app-item-container>
   <div
-    class="h-32 w-32 mx-auto grid rounded-2xl place-items-center border border-border"
+    class="absolute p-4 border border-border rounded-xl bg-dark left-10 bottom-10"
   >
-    <span class="text-2xl font-bold">PRTUI</span>
-  </div>
-  <div class="absolute p-4 border border-border rounded-xl bg-dark left-10 bottom-10">
     <app-spinner />
   </div>
 </div>

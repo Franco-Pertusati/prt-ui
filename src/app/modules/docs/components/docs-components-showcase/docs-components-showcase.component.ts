@@ -6,10 +6,12 @@ import { KbdGroupComponent } from "../../../../prt-ui/prt-kbd/kbd-group/kbd-grou
 import { PrtRadioComponent, RadioOption } from "../../../../prt-ui/prt-radio/prt-radio.component";
 import { PrtButton } from "../../../../prt-ui/prt-button/prt-button.component";
 import { SpinnerComponent } from "../../../../prt-ui/spinner/spinner.component";
+import { ItemContainerComponent } from "../../../../prt-ui/item-container/item-container.component";
+import { PrtCheckBoxComponent } from "../../../../prt-ui/prt-check-box/prt-check-box.component";
 
 @Component({
   selector: 'app-docs-components-showcase',
-  imports: [ThemeToggleBtnComponent, CounterComponent, KbdComponent, KbdGroupComponent, PrtRadioComponent, PrtButton, SpinnerComponent],
+  imports: [ThemeToggleBtnComponent, CounterComponent, KbdComponent, KbdGroupComponent, PrtRadioComponent, PrtButton, SpinnerComponent, ItemContainerComponent, PrtCheckBoxComponent],
   templateUrl: './docs-components-showcase.component.html'
 })
 export class DocsComponentsShowcaseComponent {
