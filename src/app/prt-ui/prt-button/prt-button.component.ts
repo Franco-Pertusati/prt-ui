@@ -1,65 +1,97 @@
-import { Component, input, output, computed } from '@angular/core';
+import { Component, input, output, computed, signal } from '@angular/core';
+import { PRT_BUTTON_VARIANTS } from './prt-button-variants';
+import { SpinnerComponent } from "../spinner/spinner.component";
 
 @Component({
   selector: 'prt-button',
   standalone: true,
   templateUrl: './prt-button.component.html',
+  styleUrl: './prt-button.component.css',
+  imports: [SpinnerComponent],
 })
 export class PrtButton {
+  // ─── Outputs ────────────────────────────────────────────────────────────────
   btnClick = output<void>();
 
-  variant = input<'default' | 'outlined' | 'secondary' | 'ghost' | 'destructive'>('default');
+  // ─── Inputs: Variant & Style ────────────────────────────────────────────────
+  variant   = input<'default' | 'outlined' | 'secondary' | 'ghost' | 'destructive'>('default');
   classList = input<string>('');
-  label = input<string>('');
-  icon = input<string>('');
-  showLabel = input<boolean>(true);
-  showIcon = input<boolean>(true);
-  notifications = input<number>(0);
 
-  // Tooltip
-  tooltip = input<string>('');
+  // ─── Inputs: Content ────────────────────────────────────────────────────────
+  label     = input<string>('');
+  showLabel = input<boolean>(true);
+
+  icon         = input<string>('');
+  showIcon     = input<boolean>(true);
+  iconPosition = input<'left' | 'right'>('left');
+
+  /** Icono que aparece sólo en hover — no ocupa espacio en reposo */
+  hoverIcon = input<string>('');
+
+  // ─── Inputs: Tooltip ────────────────────────────────────────────────────────
+  tooltip         = input<string>('');
   tooltipPosition = input<'top' | 'bottom' | 'left' | 'right'>('top');
 
-  // Hover icon
-  hoverIcon = input<string>('');
-  hoverIconPosition = input<'left' | 'right'>('right');
-
-  // Accessibility
-  ariaLabel = input<string>('');
-  ariaDescribedBy = input<string>('');
+  // ─── Inputs: State ──────────────────────────────────────────────────────────
   disabled = input<boolean>(false);
+  loading  = input<boolean>(false);
 
-  styleMap: Record<string, string> = {
-    default: 'bg-text text-dark',
-    outlined: 'border border-border hover:bg-neutral',
-    secondary: 'bg-light',
-    ghost: 'bg-transparent hover:bg-neutral',
-    destructive: 'bg-danger text-danger text-white',
-  };
+  // ─── Inputs: Accessibility ──────────────────────────────────────────────────
+  ariaLabel       = input<string>('');
+  ariaDescribedBy = input<string>('');
 
-  baseClasses = 'inline-flex items-center justify-center gap-1.5 rounded-xl font-medium cursor-pointer';
+  // ─── Internal state ─────────────────────────────────────────────────────────
+  isHovered = signal(false);
+
+  // ─── Computed ───────────────────────────────────────────────────────────────
+
+  /**
+   * Si la label está oculta (ej: sidebar colapsada), usa la label como tooltip fallback.
+   * El tooltip explícito siempre tiene prioridad.
+   */
+  effectiveTooltip = computed(() => {
+    if (this.tooltip()) return this.tooltip();
+    if (!this.showLabel() && this.label()) return this.label();
+    return '';
+  });
 
   classes = computed(() => {
-    const variant = this.styleMap[this.variant()] ?? '';
-    const defaultPadding = !this.showLabel() || !this.label() ? 'p-1.5' : 'px-3 py-1.5';
+    const base = 'prt-btn inline-flex items-center justify-center gap-1.5 rounded-xl font-medium cursor-pointer';
+    const variant = PRT_BUTTON_VARIANTS[this.variant()] ?? '';
+
+    const hasLabel        = this.showLabel() && !!this.label();
+    const defaultPadding  = hasLabel ? 'px-3 py-1.5' : 'p-1.5';
     const hasPaddingClass = /\b(p|px|py|pt|pb|pl|pr)-/.test(this.classList());
-    const padding = hasPaddingClass ? '' : defaultPadding;
-    const disabledClasses = this.disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
-    return `${this.baseClasses} ${variant} ${padding} ${this.classList()} ${disabledClasses}`.trim();
+    const padding         = hasPaddingClass ? '' : defaultPadding;
+
+    const direction = this.iconPosition() === 'right' ? 'flex-row-reverse' : 'flex-row';
+
+    const disabledClasses = this.disabled() || this.loading()
+      ? 'opacity-50 cursor-not-allowed pointer-events-none'
+      : '';
+
+    return `${base} ${direction} ${variant} ${padding} ${this.classList()} ${disabledClasses}`.trim();
   });
 
   tooltipClasses = computed(() => {
     const positionMap: Record<string, string> = {
-      top: 'tooltip-top',
+      top:    'tooltip-top',
       bottom: 'tooltip-bottom',
-      left: 'tooltip-left',
-      right: 'tooltip-right',
+      left:   'tooltip-left',
+      right:  'tooltip-right',
     };
-    return `prt-tooltip bg-light shadow border border-border ${positionMap[this.tooltipPosition()] ?? 'tooltip-top'}`;
+    return `prt-tooltip bg-dark shadow border border-border rounded-full ${positionMap[this.tooltipPosition()] ?? 'tooltip-top'}`;
   });
 
-  /** Computed aria-label: falls back to label() if ariaLabel() is not provided */
-  computedAriaLabel = computed(() => {
-    return this.ariaLabel() || this.label() || undefined;
-  });
+  computedAriaLabel = computed(() => this.ariaLabel() || this.label() || undefined);
+
+  // ─── Methods ────────────────────────────────────────────────────────────────
+
+  handleClick(): void {
+    if (this.disabled() || this.loading()) return;
+    this.btnClick.emit();
+  }
+
+  onMouseEnter(): void { this.isHovered.set(true); }
+  onMouseLeave(): void { this.isHovered.set(false); }
 }

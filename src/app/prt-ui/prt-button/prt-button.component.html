@@ -1,145 +1,64 @@
-@let btn =
-  {
-    label: label(),
-    icon: icon(),
-    showLabel: showLabel(),
-    showIcon: showIcon(),
-    hoverIcon: hoverIcon(),
-    hoverIconPosition: hoverIconPosition(),
-    tooltip: tooltip(),
-  };
+@let isActive = isHovered();
+@let showTip  = effectiveTooltip();
 
 <div class="prt-button-wrapper">
   <button
     [class]="classes()"
     [disabled]="disabled()"
     [attr.aria-label]="computedAriaLabel()"
-    [attr.aria-describedby]="
-      ariaDescribedBy() || (btn.tooltip ? 'tooltip-' + label() : null)
-    "
-    [attr.aria-disabled]="disabled()"
-    (click)="!disabled() && btnClick.emit()"
+    [attr.aria-describedby]="ariaDescribedBy() || (showTip ? 'tooltip-' + label() : null)"
+    [attr.aria-disabled]="disabled() || loading()"
+    [attr.aria-busy]="loading()"
+    (click)="handleClick()"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
   >
-    <!-- Hover icon: left position -->
-    @if (btn.hoverIcon && btn.hoverIconPosition === "left") {
-      <i
-        class="material-symbols-rounded prt-hover-icon prt-hover-icon--left"
-        aria-hidden="true"
-      >
-        {{ btn.hoverIcon }}
-      </i>
-    }
+    <!-- ── Loading spinner (reemplaza icono cuando loading=true) ─────────────── -->
+    @if (loading()) {
+      <app-spinner />
+    } @else {
 
-    <!-- Static icon -->
-    @if (btn.showIcon && btn.icon) {
-      <i class="material-symbols-rounded" aria-hidden="true">{{ btn.icon }}</i>
-    }
+      <!-- ── Hover icon: posición LEFT ────────────────────────────────────────── -->
+      @if (hoverIcon() && iconPosition() === 'left') {
+        <i
+          class="material-symbols-rounded prt-hover-icon"
+          [class.prt-hover-icon--visible]="isActive"
+          aria-hidden="true"
+        >{{ hoverIcon() }}</i>
+      }
 
-    <!-- Label -->
-    @if (btn.showLabel && btn.label) {
-      <span>{{ btn.label }}</span>
-    }
+      <!-- ── Icono estático ────────────────────────────────────────────────────── -->
+      @if (showIcon() && icon()) {
+        <i
+          class="material-symbols-rounded prt-static-icon"
+          [class.prt-static-icon--shift]="isActive && hoverIcon()"
+          aria-hidden="true"
+        >{{ icon() }}</i>
+      }
 
-    <!-- Hover icon: right position -->
-    @if (btn.hoverIcon && btn.hoverIconPosition === "right") {
-      <i
-        class="material-symbols-rounded prt-hover-icon prt-hover-icon--right"
-        aria-hidden="true"
-      >
-        {{ btn.hoverIcon }}
-      </i>
+      <!-- ── Label ─────────────────────────────────────────────────────────────── -->
+      @if (showLabel() && label()) {
+        <span>{{ label() }}</span>
+      }
+
+      <!-- ── Hover icon: posición RIGHT ───────────────────────────────────────── -->
+      @if (hoverIcon() && iconPosition() === 'right') {
+        <i
+          class="material-symbols-rounded prt-hover-icon"
+          [class.prt-hover-icon--visible]="isActive"
+          aria-hidden="true"
+        >{{ hoverIcon() }}</i>
+      }
+
     }
   </button>
 
-  <!-- Tooltip -->
-  @if (btn.tooltip) {
-    <span [id]="'tooltip-' + label()" [class]="tooltipClasses()" role="tooltip">
-      {{ btn.tooltip }}
-    </span>
+  <!-- ── Tooltip ───────────────────────────────────────────────────────────── -->
+  @if (showTip) {
+    <span
+      [id]="'tooltip-' + label()"
+      [class]="tooltipClasses()"
+      role="tooltip"
+    >{{ showTip }}</span>
   }
 </div>
-
-<style>
-  /* ─── Wrapper ─────────────────────────────────────────────────────────────── */
-  .prt-button-wrapper {
-    position: relative;
-    display: inline-flex;
-  }
-
-  /* ─── Hover icon ──────────────────────────────────────────────────────────── */
-  .prt-hover-icon {
-    opacity: 0;
-    transition:
-      opacity 150ms ease,
-      transform 150ms ease;
-  }
-
-  .prt-hover-icon--left {
-    transform: translateX(6px);
-  }
-
-  .prt-hover-icon--right {
-    transform: translateX(-6px);
-  }
-
-  button:hover .prt-hover-icon,
-  button:focus-visible .prt-hover-icon {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  /* ─── Tooltip ─────────────────────────────────────────────────────────────── */
-  .prt-tooltip {
-    position: absolute;
-    z-index: 50;
-    white-space: nowrap;
-    border-radius: 6px;
-    padding: 4px 8px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: 1.4;
-    pointer-events: none;
-
-    /* Hidden by default */
-    opacity: 0;
-    transition: opacity 150ms ease;
-  }
-
-  .prt-button-wrapper:hover .prt-tooltip,
-  button:focus-visible ~ .prt-tooltip {
-    opacity: 1;
-  }
-
-  /* Positions */
-  .tooltip-top {
-    bottom: calc(100% + 6px);
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .tooltip-bottom {
-    top: calc(100% + 6px);
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .tooltip-left {
-    right: calc(100% + 6px);
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .tooltip-right {
-    left: calc(100% + 6px);
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  /* ─── Reduced motion ──────────────────────────────────────────────────────── */
-  @media (prefers-reduced-motion: reduce) {
-    .prt-hover-icon,
-    .prt-tooltip {
-      transition: none;
-    }
-  }
-</style>
