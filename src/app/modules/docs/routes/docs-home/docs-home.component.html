@@ -1,5 +1,7 @@
-<div class="flex flex-col">
-  <header class="w-full grid grid-cols-2 items-center h-screen">
+<div class="flex flex-col items-center">
+  <header
+    class="items-center h-screen mx-auto max-w-6xl w-full grid grid-cols-2"
+  >
     <div class="flex flex-col gap-6">
       <div>
         <h1 class="mb-2 text-4xl font-semibold">
@@ -15,7 +17,10 @@
         <prt-button label="GitHub" variant="ghost" />
       </div>
     </div>
-    <app-docs-components-showcase />
+    <div class="flex gap-2 w-full h-full max-h-1/2">
+      <div class="bg-text grow h-full rounded-2xl shadow-2xl"></div>
+      <div class="bg-neutral grow h-full rounded-2xl shadow-2xl"></div>
+    </div>
   </header>
   <app-doc-thumbnail-list />
 </div>

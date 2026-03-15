@@ -5,7 +5,7 @@ import { PrtCheckBoxComponent } from "../../../../prt-ui/prt-check-box/prt-check
 
 @Component({
   selector: 'app-doc-thumbnail-list',
-  imports: [DocThumbnailComponent, PrtButton],
+  imports: [DocThumbnailComponent, PrtButton, PrtCheckBoxComponent],
   templateUrl: './doc-thumbnail-list.component.html'
 })
 export class DocThumbnailListComponent {
