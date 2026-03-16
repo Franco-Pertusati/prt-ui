@@ -14,7 +14,7 @@ export class PrtButton {
   btnClick = output<void>();
 
   // ─── Inputs: Variant & Style ────────────────────────────────────────────────
-  variant   = input<'default' | 'outlined' | 'secondary' | 'ghost' | 'destructive'>('default');
+  variant   = input<'default' | 'outlined' | 'secondary' | 'ghost' | 'destructive' | 'primary'>('default');
   classList = input<string>('');
 
   // ─── Inputs: Content ────────────────────────────────────────────────────────

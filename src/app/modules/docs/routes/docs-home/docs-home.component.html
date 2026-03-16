@@ -1,26 +1,87 @@
 <div class="flex flex-col items-center">
-  <header
-    class="items-center h-screen mx-auto max-w-6xl w-full grid grid-cols-2"
-  >
-    <div class="flex flex-col gap-6">
-      <div>
-        <h1 class="mb-2 text-4xl font-semibold">
-          Make beautiful websites regardless of your design experience.
-        </h1>
-        <span class="text-xl text-muted">
-          Beautiful, fast and modern React UI library for building accessible
-          and customizable web applications.
-        </span>
+  <div class="w-full bg-neutral">
+    <header
+      class="items-center h-screen mx-auto max-w-6xl w-full grid grid-cols-2"
+    >
+      <div class="flex flex-col gap-6">
+        <div>
+          <h1 class="mb-2 text-4xl font-semibold">
+            Make beautiful websites regardless of your design experience.
+          </h1>
+          <span class="text-xl text-muted">
+            Beautiful, fast and modern React UI library for building accessible
+            and customizable web applications.
+          </span>
+        </div>
+        <div class="flex gap-2">
+          <prt-button
+            label="Components"
+            hoverIcon="arrow_forward"
+            variant="primary"
+          />
+          <prt-button label="GitHub" variant="ghost" />
+        </div>
       </div>
-      <div class="flex gap-2">
-        <prt-button label="Components" icon="arrow_forward" />
-        <prt-button label="GitHub" variant="ghost" />
+      <div class="grid grid-cols-2 gap-2 w-full h-full max-h-1/2">
+        <div class="bg-dark h-full p-3 rounded-2xl flex flex-col shadow-2xl">
+          <h3 class="font-semibold text-xl mb-4">
+            Compatibility with light and dark themes.
+          </h3>
+          <div class="items-center flex flex-wrap gap-2 justify-center">
+            <app-theme-toggle-btn
+              variant="ghost"
+              [className]="'bg-neutral rounded-xl'"
+            />
+            <prt-radio
+              [options]="radioOptions"
+              selectedValue="1"
+              containerClasses="rounded-xl bg-neutral h-fit w-fit"
+              selectedOptionClass="text-dark transition-color"
+            />
+            <div class="rounded-2xl flex items-center gap-2 pr-4 bg-neutral">
+              <prt-button [loading]="true" variant="ghost" />
+              <span>Authenticating...</span>
+            </div>
+            <prt-check-box
+              iconUnchecked="lock"
+              iconChecked="lock_open"
+              variant="secondary"
+            />
+            <prt-button
+              hoverIcon="touch_app"
+              label="Hover Here!"
+              variant="default"
+            />
+            <prt-button
+              icon="tooltip"
+              label="A Tooltip"
+              [showLabel]="false"
+              variant="default"
+            />
+            <prt-button
+              icon="delete"
+              label="Delete Everything"
+              variant="destructive"
+            />
+            <prt-check-box
+              iconUnchecked="mic"
+              iconChecked="mic_off"
+              variant="secondary"
+              labelChecked="Mic On"
+              label="Mic Off"
+            />
+          </div>
+        </div>
+        <div class="h-full flex flex-col gap-2">
+          <div class="bg-dark grow p-3 rounded-2xl shadow-2xl"></div>
+          <div class="flex rounded-2xl shadow-2xl overflow-hidden h-12">
+            <div class="p-3 bg-dark" style="width: 60%"></div>
+            <div class="p-3 bg-light" style="width: 30%"></div>
+            <div class="p-3 bg-primary" style="width: 10%"></div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="flex gap-2 w-full h-full max-h-1/2">
-      <div class="bg-text grow h-full rounded-2xl shadow-2xl"></div>
-      <div class="bg-neutral grow h-full rounded-2xl shadow-2xl"></div>
-    </div>
-  </header>
+    </header>
+  </div>
   <app-doc-thumbnail-list />
 </div>

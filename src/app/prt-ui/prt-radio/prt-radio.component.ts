@@ -2,100 +2,216 @@ import { NgStyle } from '@angular/common';
 import {
   AfterViewInit,
   Component,
-  effect,
   ElementRef,
+  QueryList,
+  ViewChildren,
+  effect,
   input,
   model,
   output,
-  QueryList,
   signal,
-  ViewChildren,
 } from '@angular/core';
 
+// ─────────────────────────────────────────────
+// Types
+// ─────────────────────────────────────────────
+
 export interface RadioOption {
+  /** Unique identifier used as the bound value */
   value: string;
+  /** Display text shown inside the label */
   label: string;
+  /** Optional label override when the option is selected */
   labelChecked?: string;
+  /** Default icon (Material Symbols name) */
   icon?: string;
+  /** Icon override when the option is selected */
   iconChecked?: string;
+  /** Icon override when the option is NOT selected */
   iconUnchecked?: string;
+  /** Disables interaction when true */
   disabled?: boolean;
 }
 
+/** Sizes available for text and icon scaling */
+type RadioSize = 'sm' | 'md' | 'lg';
+
+// ─────────────────────────────────────────────
+// Size maps (defined once, shared across helpers)
+// ─────────────────────────────────────────────
+
+const ICON_SIZE_MAP: Record<RadioSize, string> = {
+  sm: 'text-xs',
+  md: 'text-sm',
+  lg: 'text-base',
+};
+
+const LABEL_SIZE_MAP: Record<RadioSize, string> = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg',
+};
+
+// ─────────────────────────────────────────────
+// Component
+// ─────────────────────────────────────────────
+
+/**
+ * `prt-radio` – Accessible radio-group with an animated sliding indicator.
+ *
+ * ### Basic usage
+ * ```html
+ * <prt-radio
+ *   [options]="myOptions"
+ *   [(selectedValue)]="selected"
+ *   (selectionChange)="onChanged($event)"
+ * />
+ * ```
+ *
+ * ### Inputs
+ * | Input               | Type          | Default            | Description                                    |
+ * |---------------------|---------------|--------------------|------------------------------------------------|
+ * | `options`           | RadioOption[] | **required**       | List of selectable options                     |
+ * | `selectedValue`     | string        | `''`               | Two-way bound selected value                   |
+ * | `containerClasses`  | string        | `'inline-flex'`    | Tailwind classes applied to the host container |
+ * | `indicatorClass`    | string        | `'bg-text'`        | Classes applied to the sliding indicator       |
+ * | `selectedOptionClass` | string      | `''`               | Extra classes applied only to the selected label |
+ * | `size`              | RadioSize     | `'md'`             | Controls icon and label text size              |
+ * | `showIcon`          | boolean       | `true`             | Whether to render option icons                 |
+ * | `showLabel`         | boolean       | `true`             | Whether to render option labels                |
+ */
 @Component({
   selector: 'prt-radio',
   imports: [NgStyle],
   templateUrl: './prt-radio.component.html',
   styles: [`
-    :host {
-      display: contents;
-    }
+    :host { display: contents; }
 
     .sliding-indicator {
       position: absolute;
-      border-radius: 0.75rem; /* rounded-xl */
-      transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                  width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                  top 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                  height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 0.75rem;
       pointer-events: none;
       z-index: 0;
+      transition:
+        left   0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        top    0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        width  0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    label {
-      position: relative;
-      z-index: 1;
-    }
+    label { position: relative; z-index: 1; }
   `],
 })
 export class PrtRadioComponent implements AfterViewInit {
+
+  // ── Required ──────────────────────────────
   options = input.required<RadioOption[]>();
 
-  indicatorClass = input<string>('bg-light');
-  size = input<'sm' | 'md' | 'lg'>('md');
+  // ── Optional inputs ───────────────────────
+  containerClasses  = input<string>('inline-flex');
+  indicatorClass    = input<string>('bg-text');
+  /** Extra Tailwind / CSS classes added to the currently selected option label */
+  selectedOptionClass = input<string>('');
+  size              = input<RadioSize>('md');
+  showIcon          = input<boolean>(true);
+  showLabel         = input<boolean>(true);
 
-  showIcon = input<boolean>(true);
-  showLabel = input<boolean>(true);
-
+  // ── Two-way binding ───────────────────────
   selectedValue = model<string>('');
 
+  // ── Outputs ───────────────────────────────
   selectionChange = output<string>();
 
-  containerClasses = input<string>('inline-flex');
+  // ── Internal ──────────────────────────────
+  @ViewChildren('optionLabel') private optionLabels!: QueryList<ElementRef<HTMLLabelElement>>;
 
-  @ViewChildren('optionLabel') optionLabels!: QueryList<ElementRef<HTMLLabelElement>>;
-
-  slidingStyle = signal<{ [key: string]: string } | null>(null);
+  slidingStyle = signal<Record<string, string> | null>(null);
 
   private initialized = false;
 
   constructor() {
-    // React to selectedValue changes to move the sliding indicator
+    // Move indicator whenever the selected value changes (after first render)
     effect(() => {
       const value = this.selectedValue();
-      if (this.initialized) {
-        this.updateSlidingIndicator(value);
-      }
+      if (this.initialized) this.updateSlidingIndicator(value);
     });
   }
 
-  ngAfterViewInit() {
-    // Small delay to ensure layout is complete
+  // ─────────────────────────────────────────
+  // Lifecycle
+  // ─────────────────────────────────────────
+
+  ngAfterViewInit(): void {
+    // Wait one tick so the browser has completed layout
     setTimeout(() => {
       this.initialized = true;
       this.updateSlidingIndicator(this.selectedValue(), false);
     }, 0);
 
-    // Re-calculate on list changes (e.g. dynamic options)
-    this.optionLabels.changes.subscribe(() => {
-      this.updateSlidingIndicator(this.selectedValue(), false);
-    });
+    // Re-position when options list changes dynamically
+    this.optionLabels.changes.subscribe(() =>
+      this.updateSlidingIndicator(this.selectedValue(), false)
+    );
   }
 
-  private updateSlidingIndicator(value: string, animate = true) {
-    if (!this.optionLabels) return;
+  // ─────────────────────────────────────────
+  // Public helpers (used in the template)
+  // ─────────────────────────────────────────
 
-    const selectedLabel = this.optionLabels.find(
+  onSelect(option: RadioOption): void {
+    if (option.disabled) return;
+    this.selectedValue.set(option.value);
+    this.selectionChange.emit(option.value);
+  }
+
+  getOptionClasses(option: RadioOption): string {
+    const isSelected = this.selectedValue() === option.value;
+    const iconOnly   = !this.showLabel() || !option.label;
+
+    return [
+      'inline-flex items-center justify-center gap-1.5 rounded-xl font-medium cursor-pointer select-none',
+      iconOnly ? 'p-1.5' : 'px-3 py-1.5',
+      option.disabled ? 'opacity-50 cursor-not-allowed' : '',
+      isSelected ? this.selectedOptionClass() : '',
+    ].filter(Boolean).join(' ');
+  }
+
+  getIconClasses(): string {
+    return `flex items-center justify-center rounded ${ICON_SIZE_MAP[this.size()]}`;
+  }
+
+  getLabelClasses(option: RadioOption): string {
+    const isSelected = this.selectedValue() === option.value;
+    return `${LABEL_SIZE_MAP[this.size()]} ${isSelected ? 'font-medium' : ''}`.trim();
+  }
+
+  /** Returns the icon name to display, respecting checked/unchecked overrides */
+  getDisplayIcon(option: RadioOption): string | undefined {
+    const isSelected = this.selectedValue() === option.value;
+    if (isSelected && option.iconChecked)   return option.iconChecked;
+    if (!isSelected && option.iconUnchecked) return option.iconUnchecked;
+    return option.icon;
+  }
+
+  /** Returns the label text, using `labelChecked` when the option is active */
+  getDisplayLabel(option: RadioOption): string {
+    const isSelected = this.selectedValue() === option.value;
+    return isSelected && option.labelChecked ? option.labelChecked : option.label;
+  }
+
+  // ─────────────────────────────────────────
+  // Private helpers
+  // ─────────────────────────────────────────
+
+  /**
+   * Calculates and sets the absolute position/size of the sliding indicator
+   * to sit behind the currently selected label.
+   *
+   * @param value    - The value of the option to highlight
+   * @param animate  - When false the transition is suppressed (e.g. on init)
+   */
+  private updateSlidingIndicator(value: string, animate = true): void {
+    const selectedLabel = this.optionLabels?.find(
       (el) => el.nativeElement.getAttribute('data-value') === value
     );
 
@@ -104,85 +220,26 @@ export class PrtRadioComponent implements AfterViewInit {
       return;
     }
 
-    const labelEl = selectedLabel.nativeElement;
+    const labelEl  = selectedLabel.nativeElement;
     const parentEl = labelEl.parentElement;
     if (!parentEl) return;
 
     const parentRect = parentEl.getBoundingClientRect();
-    const labelRect = labelEl.getBoundingClientRect();
+    const labelRect  = labelEl.getBoundingClientRect();
 
     this.slidingStyle.set({
-      left: `${labelRect.left - parentRect.left}px`,
-      top: `${labelRect.top - parentRect.top}px`,
-      width: `${labelRect.width}px`,
+      left:   `${labelRect.left  - parentRect.left}px`,
+      top:    `${labelRect.top   - parentRect.top}px`,
+      width:  `${labelRect.width}px`,
       height: `${labelRect.height}px`,
       ...(animate ? {} : { transition: 'none' }),
     });
 
-    // Re-enable transition after placement (for the no-animate initial case)
+    // Re-enable transitions on the next paint after a no-animate update
     if (!animate) {
-      requestAnimationFrame(() => {
-        this.slidingStyle.update((s) =>
-          s ? { ...s, transition: '' } : s
-        );
-      });
+      requestAnimationFrame(() =>
+        this.slidingStyle.update((s) => s ? { ...s, transition: '' } : s)
+      );
     }
-  }
-
-  getOptionClasses(option: RadioOption) {
-    const isDisabled = option.disabled;
-    const base = 'inline-flex items-center justify-center gap-1.5 rounded-xl font-medium cursor-pointer select-none';
-    const disabled = isDisabled ? 'opacity-50 cursor-not-allowed' : '';
-    const padding = !this.showLabel() || !option.label ? 'p-1.5' : 'px-3 py-1.5';
-    return `${base} ${disabled} ${padding}`;
-  }
-
-  getIconClasses() {
-    const sizes = {
-      sm: 'text-xs',
-      md: 'text-sm',
-      lg: 'text-base',
-    };
-    const base = 'flex items-center justify-center rounded';
-    return `${base} ${sizes[this.size()]}`;
-  }
-
-  getLabelClasses(option: RadioOption) {
-    const sizes = {
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-    };
-
-    const isSelected = this.selectedValue() === option.value;
-    const fontWeight = isSelected ? 'font-medium' : '';
-
-    return `${sizes[this.size()]} ${fontWeight}`;
-  }
-
-  onSelect(option: RadioOption) {
-    if (!option.disabled) {
-      this.selectedValue.set(option.value);
-      this.selectionChange.emit(option.value);
-    }
-  }
-
-  getDisplayIcon(option: RadioOption): string | undefined {
-    const isSelected = this.selectedValue() === option.value;
-
-    if (isSelected && option.iconChecked) {
-      return option.iconChecked;
-    } else if (!isSelected && option.iconUnchecked) {
-      return option.iconUnchecked;
-    } else if (option.icon) {
-      return option.icon;
-    }
-
-    return undefined;
-  }
-
-  getDisplayLabel(option: RadioOption): string {
-    const isSelected = this.selectedValue() === option.value;
-    return isSelected && option.labelChecked ? option.labelChecked : option.label;
   }
 }
