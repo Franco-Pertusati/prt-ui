@@ -33,25 +33,6 @@ export interface RadioOption {
   disabled?: boolean;
 }
 
-/** Sizes available for text and icon scaling */
-type RadioSize = 'sm' | 'md' | 'lg';
-
-// ─────────────────────────────────────────────
-// Size maps (defined once, shared across helpers)
-// ─────────────────────────────────────────────
-
-const ICON_SIZE_MAP: Record<RadioSize, string> = {
-  sm: 'text-xs',
-  md: 'text-sm',
-  lg: 'text-base',
-};
-
-const LABEL_SIZE_MAP: Record<RadioSize, string> = {
-  sm: 'text-sm',
-  md: 'text-base',
-  lg: 'text-lg',
-};
-
 // ─────────────────────────────────────────────
 // Component
 // ─────────────────────────────────────────────
@@ -89,7 +70,6 @@ const LABEL_SIZE_MAP: Record<RadioSize, string> = {
 
     .sliding-indicator {
       position: absolute;
-      border-radius: 0.75rem;
       pointer-events: none;
       z-index: 0;
       transition:
@@ -108,13 +88,13 @@ export class PrtRadioComponent implements AfterViewInit {
   options = input.required<RadioOption[]>();
 
   // ── Optional inputs ───────────────────────
-  containerClasses  = input<string>('inline-flex');
-  indicatorClass    = input<string>('bg-text');
+  containerClass = input<string>('');
+  indicatorClass = input<string>('');
+  optionClass = input<string>('');
   /** Extra Tailwind / CSS classes added to the currently selected option label */
   selectedOptionClass = input<string>('');
-  size              = input<RadioSize>('md');
-  showIcon          = input<boolean>(true);
-  showLabel         = input<boolean>(true);
+  showIcon = input<boolean>(true);
+  showLabel = input<boolean>(true);
 
   // ── Two-way binding ───────────────────────
   selectedValue = model<string>('');
@@ -166,29 +146,21 @@ export class PrtRadioComponent implements AfterViewInit {
 
   getOptionClasses(option: RadioOption): string {
     const isSelected = this.selectedValue() === option.value;
-    const iconOnly   = !this.showLabel() || !option.label;
+    const iconOnly = !this.showLabel() || !option.label;
+    const baseClasses = 'inline-flex items-center justify-center gap-1.5 rounded-full font-medium cursor-pointer select-none'
 
     return [
-      'inline-flex items-center justify-center gap-1.5 rounded-xl font-medium cursor-pointer select-none',
+      this.optionClass() ? this.optionClass() : baseClasses,
       iconOnly ? 'p-1.5' : 'px-3 py-1.5',
       option.disabled ? 'opacity-50 cursor-not-allowed' : '',
       isSelected ? this.selectedOptionClass() : '',
     ].filter(Boolean).join(' ');
   }
 
-  getIconClasses(): string {
-    return `flex items-center justify-center rounded ${ICON_SIZE_MAP[this.size()]}`;
-  }
-
-  getLabelClasses(option: RadioOption): string {
-    const isSelected = this.selectedValue() === option.value;
-    return `${LABEL_SIZE_MAP[this.size()]} ${isSelected ? 'font-medium' : ''}`.trim();
-  }
-
   /** Returns the icon name to display, respecting checked/unchecked overrides */
   getDisplayIcon(option: RadioOption): string | undefined {
     const isSelected = this.selectedValue() === option.value;
-    if (isSelected && option.iconChecked)   return option.iconChecked;
+    if (isSelected && option.iconChecked) return option.iconChecked;
     if (!isSelected && option.iconUnchecked) return option.iconUnchecked;
     return option.icon;
   }
@@ -220,17 +192,17 @@ export class PrtRadioComponent implements AfterViewInit {
       return;
     }
 
-    const labelEl  = selectedLabel.nativeElement;
+    const labelEl = selectedLabel.nativeElement;
     const parentEl = labelEl.parentElement;
     if (!parentEl) return;
 
     const parentRect = parentEl.getBoundingClientRect();
-    const labelRect  = labelEl.getBoundingClientRect();
+    const labelRect = labelEl.getBoundingClientRect();
 
     this.slidingStyle.set({
-      left:   `${labelRect.left  - parentRect.left}px`,
-      top:    `${labelRect.top   - parentRect.top}px`,
-      width:  `${labelRect.width}px`,
+      left: `${labelRect.left - parentRect.left}px`,
+      top: `${labelRect.top - parentRect.top}px`,
+      width: `${labelRect.width}px`,
       height: `${labelRect.height}px`,
       ...(animate ? {} : { transition: 'none' }),
     });

@@ -1,5 +1,4 @@
-<div [class]="containerClasses()" style="position: relative">
-
+<div [class]="containerClass()" style="position: relative">
   <!-- Animated background pill that slides to the active option -->
   @if (slidingStyle()) {
     <div
@@ -17,14 +16,12 @@
     >
       <!-- Icon (Material Symbols) -->
       @if (showIcon() && getDisplayIcon(option)) {
-        <div [class]="getIconClasses()">
-          <i class="material-symbols-rounded">{{ getDisplayIcon(option) }}</i>
-        </div>
+        <i class="material-symbols-rounded">{{ getDisplayIcon(option) }}</i>
       }
 
       <!-- Label text -->
       @if (showLabel() && option.label) {
-        <span [class]="getLabelClasses(option)">{{ getDisplayLabel(option) }}</span>
+        <span>{{ getDisplayLabel(option) }}</span>
       }
 
       <!-- Hidden native radio – keeps a11y semantics -->
@@ -39,5 +36,4 @@
       />
     </label>
   }
-
 </div>

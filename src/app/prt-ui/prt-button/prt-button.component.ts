@@ -56,7 +56,7 @@ export class PrtButton {
   });
 
   classes = computed(() => {
-    const base = 'prt-btn inline-flex items-center justify-center gap-1.5 rounded-xl font-medium cursor-pointer';
+    const base = 'prt-btn inline-flex items-center justify-center gap-1.5 rounded-full font-medium cursor-pointer';
     const variant = PRT_BUTTON_VARIANTS[this.variant()] ?? '';
 
     const hasLabel        = this.showLabel() && !!this.label();

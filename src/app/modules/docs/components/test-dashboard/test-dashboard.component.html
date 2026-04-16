@@ -1,0 +1,98 @@
+<div class="flex bg-neutral rounded-3xl h-full border border-border">
+  <div class="w-1/6 flex flex-col gap-6 border-r border-border p-4">
+    <div class="flex items-center gap-2">
+      <style>
+        .profileImg {
+          background: hsla(333, 100%, 53%, 1);
+
+          background: linear-gradient(
+            90deg,
+            hsla(333, 100%, 53%, 1) 0%,
+            hsla(33, 94%, 57%, 1) 100%
+          );
+
+          background: -moz-linear-gradient(
+            90deg,
+            hsla(333, 100%, 53%, 1) 0%,
+            hsla(33, 94%, 57%, 1) 100%
+          );
+
+          background: -webkit-linear-gradient(
+            90deg,
+            hsla(333, 100%, 53%, 1) 0%,
+            hsla(33, 94%, 57%, 1) 100%
+          );
+
+          filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF0F7B", endColorstr="#F89B29", GradientType=1 );
+        }
+      </style>
+      <div class="h-14 w-14 rounded-full bg-neutral profileImg"></div>
+      <div class="flex flex-col">
+        <span class="font-semibold">Franco Pertusati</span>
+        <span class="text-sm">Owner</span>
+      </div>
+    </div>
+    <prt-radio
+      [options]="sidebarOptions"
+      containerClass="flex flex-col gap-1"
+      optionClass="hover:bg-dark flex gap-1.5 transition-shadow items-center rounded-full"
+      selectedOptionClass="bg-dark shadow"
+      selectedValue="1"
+      [showIcon]="true"
+    />
+    <div class="mt-auto">
+      <prt-button variant="ghost" label="Information" icon="question_mark" />
+      <prt-button variant="ghost" label="Logout" icon="logout" />
+    </div>
+  </div>
+
+  <div class="p-4 grow flex flex-col gap-6 overflow-scroll">
+    <div class="w-full flex">
+      <h1 class="text-2xl font-semibold grow">Good Morning, Franco</h1>
+      <div class="flex gap-2">
+        <prt-button icon="notifications" variant="secondary" />
+        <prt-button icon="calendar_today" variant="secondary" />
+        <prt-button icon="person_add" label="Invite" variant="primary" />
+      </div>
+    </div>
+
+    <div class="flex w-full justify-between">
+      <prt-radio
+        [options]="tabsOptions"
+        indicatorClass="bg-dark rounded-full shadow"
+        selectedValue="1"
+        containerClass="bg-light w-fit rounded-full p-1"
+      />
+      <div class="flex gap-2">
+        <prt-button icon="refresh" variant="secondary" />
+        <prt-button icon="calendar_today" label="Monthly" variant="secondary" />
+        <prt-button icon="download" label="Download" variant="primary" />
+      </div>
+    </div>
+
+    <div>
+      <div class="w-full grid grid-cols-4 gap-2 mb-2">
+        <div
+          class="bg-dark rounded-2xl shadow flex justify-between items-center p-6"
+        >
+          <div class="flex flex-col">
+            <span class="text-muted">Reveneu</span>
+            <span class="text-2xl font-semibold">$284,395</span>
+          </div>
+          <div class="bg-succes/50 px-1.5 py-0.5 flex items-center w-fit gap-2 text-sm rounded-full">
+            <span>3,7%</span>
+            <i class="material-symbols-rounded">trending_up</i>
+          </div>
+        </div>
+        <div class="bg-dark rounded-2xl shadow"></div>
+        <div class="bg-dark rounded-2xl shadow"></div>
+        <div class="bg-dark rounded-2xl shadow"></div>
+      </div>
+
+      <div class="w-full grid grid-cols-2 gap-2">
+        <div class="bg-dark rounded-2xl shadow h-64"></div>
+        <div class="bg-dark rounded-2xl shadow h-64"></div>
+      </div>
+    </div>
+  </div>
+</div>
