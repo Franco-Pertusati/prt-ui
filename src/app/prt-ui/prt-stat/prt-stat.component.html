@@ -1,0 +1,30 @@
+@let stat = statcard();
+
+<prt-container>
+  <div class="p-3 flex items-center justify-between">
+    <div class="flex flex-col">
+      <span class="text-muted">
+        {{ stat.name }}
+      </span>
+      <span class="text-2xl font-semibold">
+        {{ stat.symbol }}
+        {{ stat.value }}
+      </span>
+    </div>
+    @if (stat.variataion) {
+      <div
+        [className]="`${stat.variataion > 0 ? 'bg-succes/30 ' : 'bg-danger/30'} px-1.5 py-0.5 flex items-center w-fit gap-2 text-sm rounded-full scale-90`"
+      >
+        <i class="material-symbols-rounded text-sm">
+          {{ stat.variataion > 0 ? 'arrow_upward' : 'arrow_downward' }}
+        </i>
+        <span>
+          {{
+            stat.variataion
+          }}
+          %
+        </span>
+      </div>
+    }
+  </div>
+</prt-container>

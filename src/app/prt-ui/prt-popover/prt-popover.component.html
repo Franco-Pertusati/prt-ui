@@ -1,0 +1,22 @@
+<div class="relative w-fit h-fit" #triggerWrapper>
+  <prt-button
+    icon="keyboard_arrow_down"
+    [label]="label() || ''"
+    [variant]="variant()"
+    (btnClick)="togglePopover()"
+  />
+  @if (isOpen()) {
+    <div
+      #popover
+      class="absolute z-50 mt-1"
+      [style.left]="popoverPosition().left"
+      [style.right]="popoverPosition().right"
+      [style.top]="popoverPosition().top"
+      [style.bottom]="popoverPosition().bottom"
+    >
+      <prt-container shadowSize="shadow-xl">
+        <ng-content />
+      </prt-container>
+    </div>
+  }
+</div>
