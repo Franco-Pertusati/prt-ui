@@ -1,0 +1,434 @@
+[
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-20",
+        "date": "2026-07-21",
+        "amount": 555.83,
+        "paidamount": 555.83,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-20",
+        "date": "2026-07-22",
+        "amount": 943.87,
+        "paidamount": 943.87,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-20",
+        "date": "2026-07-30",
+        "amount": 5436.84,
+        "paidamount": 5436.84,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-21",
+        "date": "2026-07-31",
+        "amount": 1043.87,
+        "paidamount": 1043.87,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-22",
+        "date": "2026-07-23",
+        "amount": 2053.08,
+        "paidamount": 2053.08,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-22",
+        "date": "2026-07-24",
+        "amount": 1700.35,
+        "paidamount": 1700.35,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-22",
+        "date": "2026-08-03",
+        "amount": 2179.07,
+        "paidamount": 2179.07,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-24",
+        "date": "2026-07-27",
+        "amount": 963.8,
+        "paidamount": 963.8,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-24",
+        "date": "2026-08-05",
+        "amount": 5227.73,
+        "paidamount": 5227.73,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-25",
+        "date": "2026-07-28",
+        "amount": 3512.56,
+        "paidamount": 3512.56,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-25",
+        "date": "2026-08-06",
+        "amount": 12476.8,
+        "paidamount": 12476.8,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-26",
+        "date": "2026-07-28",
+        "amount": 571.84,
+        "paidamount": 571.84,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-26",
+        "date": "2026-08-06",
+        "amount": 6548.56,
+        "paidamount": 6548.56,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-27",
+        "date": "2026-07-28",
+        "amount": 297.16,
+        "paidamount": 297.16,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-27",
+        "date": "2026-08-06",
+        "amount": 1498.72,
+        "paidamount": 1498.72,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-28",
+        "date": "2026-07-29",
+        "amount": 1759.97,
+        "paidamount": 1759.97,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-28",
+        "date": "2026-08-07",
+        "amount": 6288.78,
+        "paidamount": 6288.78,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-29",
+        "date": null,
+        "amount": 3737.72,
+        "paidamount": 0,
+        "pendingamount": 3737.72
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-07-31",
+        "date": null,
+        "amount": 7408.67,
+        "paidamount": 0,
+        "pendingamount": 7408.67
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-01",
+        "date": null,
+        "amount": 3845.71,
+        "paidamount": 0,
+        "pendingamount": 3845.71
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-03",
+        "date": null,
+        "amount": 7358.45,
+        "paidamount": 0,
+        "pendingamount": 7358.45
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-04",
+        "date": "2026-08-05",
+        "amount": 1020.18,
+        "paidamount": 1020.18,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-04",
+        "date": "2026-08-06",
+        "amount": 332.17,
+        "paidamount": 332.17,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-04",
+        "date": "2026-08-14",
+        "amount": 7765.69,
+        "paidamount": 7765.69,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-05",
+        "date": "2026-08-06",
+        "amount": 2935.16,
+        "paidamount": 2935.16,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-05",
+        "date": "2026-08-18",
+        "amount": 3932.89,
+        "paidamount": 3932.89,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-06",
+        "date": "2026-08-07",
+        "amount": 882.19,
+        "paidamount": 882.19,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-06",
+        "date": "2026-08-10",
+        "amount": 446.43,
+        "paidamount": 446.43,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-06",
+        "date": "2026-08-19",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 8026.8
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-06",
+        "date": "2026-08-20",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 1508.98
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-07",
+        "date": "2026-08-10",
+        "amount": 1326.51,
+        "paidamount": 1326.51,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-07",
+        "date": "2026-08-20",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 3535.26
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-09",
+        "date": "2026-08-11",
+        "amount": 664.28,
+        "paidamount": 664.28,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-09",
+        "date": "2026-08-21",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 3534.76
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-10",
+        "date": "2026-08-11",
+        "amount": 2886.99,
+        "paidamount": 2886.99,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-10",
+        "date": "2026-08-21",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 5219.93
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-11",
+        "date": "2026-08-12",
+        "amount": 244.92,
+        "paidamount": 244.92,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-11",
+        "date": "2026-08-24",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 7612.25
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-12",
+        "date": "2026-08-13",
+        "amount": 208.96,
+        "paidamount": 208.96,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-12",
+        "date": "2026-08-25",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 2393.59
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-13",
+        "date": "2026-08-14",
+        "amount": 216.23,
+        "paidamount": 216.23,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-13",
+        "date": "2026-08-26",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 7688.12
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-13",
+        "date": "2026-08-27",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 466.85
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-14",
+        "date": "2026-08-18",
+        "amount": 1317.62,
+        "paidamount": 1317.62,
+        "pendingamount": 0
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-14",
+        "date": "2026-08-27",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 4097.57
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-16",
+        "date": "2026-08-20",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 1760.4
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-16",
+        "date": "2026-08-28",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 1104.86
+    },
+    {
+        "type": "Bancarias",
+        "user_id": "f756630b-e4a2-4ad1-9c2f-8fc6985291e0",
+        "shiftDate": "2026-08-17",
+        "date": "2026-08-20",
+        "amount": 0,
+        "paidamount": 0,
+        "pendingamount": 454.27
+    }
+]

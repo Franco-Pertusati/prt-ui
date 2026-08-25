@@ -1,0 +1,15 @@
+<form class="flex flex-col justify-center gap-4" (submit)="$event.preventDefault()">
+  <input
+    #propinaJustaInput
+    type="text"
+    placeholder="Transacciones de propina justa"
+    class="border border-border p-2 rounded-full"
+  />
+  <input
+    #galiciaInput
+    type="text"
+    placeholder="Transacciones de galicia"
+    class="border border-border p-2 rounded-full"
+  />
+  <prt-button label="Comparar" (click)="comparar(propinaJustaInput, galiciaInput)" />
+</form> 

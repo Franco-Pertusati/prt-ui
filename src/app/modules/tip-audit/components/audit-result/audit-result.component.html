@@ -1,0 +1,48 @@
+<div class="flex flex-col gap-12">
+  <section>
+    <div class="flex gap-2">
+      <div class="bg-r-200 rounded-xl p-6 w-fit text-white flex gap-4 flex-col">
+        <span class="text-4xl">
+          ${{ ultimaComparacion()?.totales?.totalAcreditadoEnGalicia }}
+        </span>
+        <span>Total acreditado en Galicia en los ultimos 30 dias.</span>
+      </div>
+      <div class="bg-r-100 rounded-xl p-6 w-fit text-white flex gap-4 flex-col">
+        <span class="text-4xl">
+          ${{ ultimaComparacion()?.totales?.totalPagadoSegunPropinaJusta }}
+        </span>
+        <span>Total pagado segun propina justa en los ultimos 30 dias.</span>
+      </div>
+    </div>
+  </section>
+  <section class="flex flex-col gap-8">
+    <div>
+      <h2 class="text-4xl">Transacciones emparejadas</h2>
+      <span class="text-muted">
+        Pares que se pudieron conciliar 1 a 1 por monto + fecha
+      </span>
+    </div>
+    <div class="flex flex-col gap-2">
+      <div class="w-full flex justify-around">
+        <h3 class="font-bold">Galicia</h3>
+        <h3 class="font-bold">Propina Justa</h3>
+      </div>
+      @for (t of ultimaComparacion()?.emparejadas; track $index) {
+        <div class="flex shadow-xl rounded-xl text-white">
+          <div class="rounded-l-xl bg-r-200 p-2 w-1/2 flex justify-between">
+            <span>
+              {{ t.galicia.Fecha }}
+            </span>
+            <span> ${{ t.galicia.ImporteCredito }} </span>
+          </div>
+          <div class="rounded-r-xl bg-r-100 p-2 w-1/2 flex justify-between">
+            <span>
+              {{ t.propina.date }}
+            </span>
+            <span> ${{ t.galicia.ImporteCredito }} </span>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+</div>
